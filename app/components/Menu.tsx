@@ -11,12 +11,12 @@ const Menu: FC<MenuProps> = ({}) => {
     return <div className={"flex justify-evenly justify-center items-center"}>
         {
             [
-                {icon: <HiOutlineHome/>, name: "Главная", link: "http://dasfdsa"},
-                {icon: <HiOutlineCollection/>, name: "Портфолио", link: "http://dasfdsa"},
-                {icon: <HiOutlinePhone/>, name: "Контакты", link: "http://dasfdsa"},
-                {icon: <HiOutlineUser/>, name: "Обо мне", link: "http://dasfdsa"},
+                {icon: <HiOutlineHome/>, name: "Главная", link: "/"},
+                {icon: <HiOutlineCollection/>, name: "Портфолио", link: "portfolio"},
+                {icon: <HiOutlinePhone/>, name: "Контакты", link: "contacts"},
+                {icon: <HiOutlineUser/>, name: "Обо мне", link: "about"},
             ].map((el, i) => {
-                return <MenuButton key={i} icon={el.icon} text={el.name}/>
+                return <MenuButton key={i} icon={el.icon} text={el.name} link={el.link}/>
             })
         }
     </div>

@@ -4,16 +4,12 @@ import Menu from "./Menu";
 import SearchInput from "./SearhInput";
 
 const Header: FC = () => {
-    return <div className="col-span-6 shadow flex flex-row justify-center p-2">
+    return <div className="sticky top-0 z-50 col-span-6 shadow flex flex-row justify-center p-2 bg-white">
         <div className="basis-4/12 ">
-            <SearchInput />
+            <SearchInput/>
         </div>
         <div className="basis-full ">
             <Menu/>
-
-        </div>
-        <div className="basis-1/12">
-            linksli nkslinks
         </div>
         <div className="basis-1/12">
             <figcaption className="flex items-center justify-center space-x-4 text-left cursor-pointer">

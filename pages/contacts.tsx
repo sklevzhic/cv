@@ -3,7 +3,7 @@ import {FC} from "react";
 const ContactsPage: FC = () => {
   return (
     <div >
-        ContactsPage
+        Hi, I'm 
     </div>
   )
 }

@@ -6,7 +6,7 @@ interface TitlePageProps {
 }
 
 const TitlePage: FC<TitlePageProps> = ({text}) => {
-    return <p className="mt-2 mb-3  font-medium text-4xl ">{text}</p>
+    return <p className="mt-3 py-2 mb-5 border-b-2 font-medium text-4xl ">{text}</p>
 }
 
 export default TitlePage

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React, {FC} from "react";
 
+
 interface BreadcrumbsProps {
-    // text: string
+
 }
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({}) => {

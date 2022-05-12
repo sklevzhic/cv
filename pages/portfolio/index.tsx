@@ -1,17 +1,21 @@
-import Map from "../../app/components/Map"
 import React, {FC} from "react";
-import cn from "classnames"
-import Form from "../../app/components/Form";
 import TitlePage from "../../app/components/TitlePage";
 import Breadcrumbs from "../../app/components/Breadcrumbs";
 import CardPortfolio from "../../app/components/CardPortfolio";
+import FilterInputItem from "../../app/components/FilterInputItem";
 
 const PortfolioPage: FC = () => {
   return (
     <div>
         <Breadcrumbs />
         <TitlePage text={"Портфолио"}/>
-        <div className={"shadow flex flex-wrap justify-evenly"}>
+        <FilterInputItem />
+        <FilterInputItem />
+        <FilterInputItem />
+        <FilterInputItem />
+        <FilterInputItem />
+        <div className={"shadow flex flex-wrap justify-between"}>
+
             <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg"}/>
             <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/my-app.jpg"}/>
             <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/sort-table.png"}/>

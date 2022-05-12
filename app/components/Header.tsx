@@ -4,7 +4,7 @@ import Menu from "./Menu";
 import SearchInput from "./SearhInput";
 
 const Header: FC = () => {
-    return <div className="sticky top-0 z-50 col-span-6 shadow flex flex-row justify-center p-2 bg-white">
+    return <header className="sticky top-0 z-50 col-span-6 shadow flex flex-row justify-center p-2 bg-white">
         <div className="basis-4/12 ">
             <SearchInput/>
         </div>
@@ -19,7 +19,7 @@ const Header: FC = () => {
             </figcaption>
 
         </div>
-    </div>
+    </header>
 }
 
 export default Header

@@ -8,7 +8,7 @@ interface CardPortfolioProps {
 const CardPortfolio: FC<CardPortfolioProps> = ({img}) => {
     return <Link href={"portfolio/df"}>
         <div
-            className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md mb-3">
+            className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-md mb-4">
             <figcaption className="">
                 <img src={img}
                      alt=""

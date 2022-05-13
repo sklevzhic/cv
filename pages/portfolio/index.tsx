@@ -4,26 +4,77 @@ import Breadcrumbs from "../../app/components/Breadcrumbs";
 import CardPortfolio from "../../app/components/CardPortfolio";
 import FilterInputItem from "../../app/components/FilterInputItem";
 
+let projects: any = [
+    {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+        {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+        {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+        {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+        {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+        {
+        name: "Виртуальная клавиатура",
+        image: "https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg",
+        description: "dfdsf",
+        id: "1",
+        technologies: "",
+        linkDemo: "",
+        linkCode: ""
+    },
+
+]
+
 const PortfolioPage: FC = () => {
   return (
     <div>
         <Breadcrumbs />
         <TitlePage text={"Портфолио"}/>
         <FilterInputItem />
-        <FilterInputItem />
-        <FilterInputItem />
-        <FilterInputItem />
-        <FilterInputItem />
-        <div className={"shadow flex flex-wrap justify-between"}>
 
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/vkey.jpg"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/my-app.jpg"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/sort-table.png"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/Example4.png"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/Example3.png"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/english.jpg"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/Example6.png"}/>
-            <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/Example5.png"}/>
+        <div className={"shadow flex flex-wrap justify-between"}>
+            {
+                projects.map((el: any) => {
+                    return <CardPortfolio img={"https://sklevzhic.github.io/rsschool-cv/assets/img/my-app.jpg"}/>
+                })
+            }
         </div>
 
         <button type="button"

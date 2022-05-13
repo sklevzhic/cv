@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React, {FC} from "react";
+import TechnologyItem from "./TechnologyItem";
 
 interface CardPortfolioProps {
     img: string
 }
 
 const CardPortfolio: FC<CardPortfolioProps> = ({img}) => {
+    let arr = ["react", "redux", "material", "html","js", "typescript", "antd", "css", "reactrouter"]
     return <Link href={"portfolio/df"}>
         <div
             className="max-w-xs bg-white rounded-lg border border-gray-200 shadow-md mb-4">
@@ -19,6 +21,12 @@ const CardPortfolio: FC<CardPortfolioProps> = ({img}) => {
                 <a href="#">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight">Virtual Keyboard</h5>
                 </a>
+                {
+                    arr.map(technology => {
+                        return <TechnologyItem item={technology} small={true} />
+                    })
+                }
+
                 <span className="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Dark</span>
                 <span className="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Dark</span>
                 <span className="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Dark</span>

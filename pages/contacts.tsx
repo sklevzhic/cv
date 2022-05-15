@@ -3,7 +3,10 @@ import {FC} from "react";
 const ContactsPage: FC = () => {
   return (
     <div >
-        Hi, I'm 
+        CONTACTS
+        +375297559056
+        sklevzhic@gmail.com
+        sklevzhic
     </div>
   )
 }

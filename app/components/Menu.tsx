@@ -6,9 +6,13 @@ interface MenuProps {
 
 }
 
-``
+//Works
+// Resume
+//Services
+//Contacts
 const Menu: FC<MenuProps> = ({}) => {
-    return <div className={"flex justify-evenly justify-center items-center"}>
+    return <div className={"flex justify-evenly justify-center items-center " +
+        "hidden justify-between items-center w-full md:flex md:w-auto md:order-1"}>
         {
             [
                 {icon: <HiOutlineHome/>, name: "Главная", link: "/"},

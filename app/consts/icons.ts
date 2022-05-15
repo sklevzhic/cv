@@ -126,5 +126,4 @@ export const icons: any = {
         color: "#5582d7"
     },
 
-
 }

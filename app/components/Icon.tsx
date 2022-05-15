@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import { IconType } from "react-icons";
-import {Image} from "../models/IProject";
 
 interface IconProps {
     color: string,

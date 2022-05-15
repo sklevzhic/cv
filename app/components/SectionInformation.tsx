@@ -9,18 +9,17 @@ interface SectionInformationProps {
 
 const SectionInformation: React.FC<SectionInformationProps> = ({arr, title, description}) => {
     return <section>
-        <div className="container px-5 py-10 mx-auto">
+        <div className="container py-10 mx-auto">
             <div className="mb-10">
                 <h2 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">{title}</h2>
-                <p className={"text-center"}>
-                    {description}
-                </p>
+                <p className={"text-center"}> {description} </p>
             </div>
 
             <div className="container px-5 mx-auto text-gray-600 body-font">
                 {
                     arr.map((el: any) => {
                         return <CardExperience
+                            key={el.date}
                             name={el.name}
                             date={el.date} description={el.description}/>
                     })

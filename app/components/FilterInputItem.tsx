@@ -1,10 +1,12 @@
 import React, {FC, useEffect, useState} from "react";
 
-import Select from 'react-select';
+import Select, {OnChangeValue} from 'react-select';
 import {icons} from "../consts/icons";
 import Icon from "./Icon";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import {ITag} from "../models/ITag";
+import { useRouter } from "next/router";
 
 interface FilterInputItemProps {
 
@@ -13,9 +15,16 @@ interface FilterInputItemProps {
 
 const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
     let technologies = useSelector((state: RootState) => state.portfolio.technologies)
-    useEffect(() => {
-        console.log(technologies)
-    }, [technologies])
+    const router = useRouter();
+    let tagsURL = router.query?.tags
+
+    console.log(tagsURL)
+
+    let onChangeTechnologies = (tags: ITag[]) => {
+        let values = tags.map((el) => el.value).join(",")
+        router.push({ href: '/', query: { tags: values  } });
+    }
+
     let arrForSelect: any[] = Object.keys(icons).map(key => {
         return {
             "value": key,
@@ -36,10 +45,12 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
 
 
 
+
     return <Select
         defaultValue={technologies}
         placeholder={"Выбрать технологию"}
         formatOptionLabel={formatOptionLabel}
+        onChange={onChangeTechnologies}
         isMulti
         name="colors"
         options={arrForSelect}

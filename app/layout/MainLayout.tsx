@@ -1,12 +1,20 @@
 import Head from "next/head";
 import React, {FC} from "react";
 import Header from "../components/Header";
-import { SiInstagram } from "react-icons/si"
+import {SiLinkedin, SiVk, SiHackerearth, SiTelegram, SiHabr, SiGithub} from "react-icons/si"
+import Icon from "../components/Icon";
 
 interface LayoutProps {
     children: React.ReactNode,
     title?: string
 }
+let socialLinks: any = [
+    { name: "Vk", image: SiVk, link: "https://vk.com/sklevzhits", color: "#1c4696" },
+    { name: "Linkedin", image: SiLinkedin, link: "https://www.linkedin.com/in/alexander-klevzhits-8a4511184/", color: "#09255d" },
+    { name: "Telegram", image: SiTelegram, link: "https://t.me/sklevzhic", color: "#2f87a4" },
+    { name: "HeadHunter", image: SiHackerearth, link: "https://hh.ru/resume/83194df3ff021cf8150039ed1f5a4c76453537", color: "#1c4696" },
+    { name: "GitHub", image: SiGithub, link: "https://github.com/sklevzhic", color: "#000000" }
+]
 
 const MainLayout: FC<LayoutProps> = ({children}) => {
 
@@ -26,15 +34,15 @@ const MainLayout: FC<LayoutProps> = ({children}) => {
                         <div className="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
 
                             {
-                                [1,2,3,4,5].map(el => {
-                                    return <a key={el} href="#" className="text-gray-400 hover:text-gray-500">
-                                        <span className="sr-only">Facebook</span>
-                                        <SiInstagram size={"1.5em"}/>
+                                socialLinks.map((el: any) => {
+                                    return <a key={el.name} href={el.link} target={"_blank"} className="text-gray-400 hover:text-gray-500">
+                                        <span className="sr-only">{el.name}</span>
+                                        <Icon icon={el.image} color={el.color} />
                                     </a>
                                 })
                             }
 
-        </div>
+                        </div>
                     </div>
                 </section>
             </footer>

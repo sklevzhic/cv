@@ -1,12 +1,13 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect} from "react";
 
-import Select, {OnChangeValue} from 'react-select';
+import Select from 'react-select';
 import {icons} from "../consts/icons";
 import Icon from "./Icon";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {ITag} from "../models/ITag";
 import { useRouter } from "next/router";
+// import { setTechnologies } from "../../store/slices/portfolioSlice";
 
 interface FilterInputItemProps {
 
@@ -14,11 +15,17 @@ interface FilterInputItemProps {
 
 
 const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
-    let technologies = useSelector((state: RootState) => state.portfolio.technologies)
     const router = useRouter();
-    let tagsURL = router.query?.tags
+    const dispatch = useDispatch()
 
-    console.log(tagsURL)
+    let { technologies } = useSelector((state: RootState) => state.portfolio)
+
+
+    let tagsURL = router.query?.tags
+    //
+    // useEffect(() => {}, )
+    // console.log(tagsURL)
+
 
     let onChangeTechnologies = (tags: ITag[]) => {
         let values = tags.map((el) => el.value).join(",")

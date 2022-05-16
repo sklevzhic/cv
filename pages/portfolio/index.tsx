@@ -4,10 +4,10 @@ import CardPortfolio from "../../app/components/CardPortfolio";
 import FilterInputItem from "../../app/components/FilterInputItem";
 import {IProject} from "../../app/models/IProject";
 import {useSelector} from "react-redux";
-import { RootState } from "../../store";
+import {RootState} from "../../store";
 
 const PortfolioPage: FC = () => {
-    let projects = useSelector((state:RootState) => state.portfolio.items)
+    let projects = useSelector((state: RootState) => state.portfolio.items)
 
     return (
         <div className={"relative"}>

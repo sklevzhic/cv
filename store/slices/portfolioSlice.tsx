@@ -52,8 +52,8 @@ const initialState: PortfolioState = {
             description: "Верстка макета страницы",
             id: 4,
             technologies: "html, css",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://sklevzhic.github.io/hexal/",
+            linkCode: "https://github.com/sklevzhic/hexal/tree/gh-pages"
         },
         {
             name: "Virtual Keyboard",
@@ -61,8 +61,8 @@ const initialState: PortfolioState = {
             description: "Набор текста на виртуальной клавиатуре",
             id: 5,
             technologies: "html, css, js",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://sklevzhic.github.io/virtual-keyboard/",
+            linkCode: "https://github.com/sklevzhic/virtual-keyboard"
         },
         {
             name: "NeutronMail",
@@ -70,8 +70,8 @@ const initialState: PortfolioState = {
             description: "Верстка макета страницы",
             id: 6,
             technologies: "html, css, pikselperfect",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://sklevzhic.github.io/neutronmail/",
+            linkCode: "https://github.com/sklevzhic/neutronmail/tree/gh-pages"
         },
         {
             name: "Sort Table",
@@ -79,8 +79,8 @@ const initialState: PortfolioState = {
             description: "Сортировка таблицы по 3 условиям",
             id: 7,
             technologies: "react, redux",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://table-i2f8a99ix-sklevzhic.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/table"
         },
         {
             name: "Tech",
@@ -88,8 +88,8 @@ const initialState: PortfolioState = {
             description: "Приложение для учета техники",
             id: 8,
             technologies: "react, redux",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://sklevzhic.github.io/tech",
+            linkCode: "https://github.com/sklevzhic/tech/tree/master"
         },
         {
             name: "Todo List",
@@ -97,8 +97,8 @@ const initialState: PortfolioState = {
             description: "Простой ToDo List",
             id: 9,
             technologies: "next, redux, typescript",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://todots.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/todots"
         },
         {
             name: "Weather App",
@@ -120,6 +120,9 @@ export const portfolioSlice = createSlice({
     reducers: {
         getActiveProject: (state, action:PayloadAction<string>) => {
             state.activeProject = state.items.filter(el => el.id == action.payload)[0]
+        },
+        setTechnologies: (state, action:PayloadAction<string[]>) => {
+            state.technologies = action.payload
         },
     },
 })

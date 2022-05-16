@@ -6,6 +6,7 @@ import CardPortfolio from "../app/components/CardPortfolio";
 import {useSelector} from "react-redux";
 import {RootState} from "../store";
 import Link from "next/link";
+import Image from "next/image";
 import SectionInformation from "../app/components/SectionInformation";
 import {AiFillCrown} from "react-icons/ai"
 import {BsTelephoneFill} from "react-icons/bs"
@@ -39,17 +40,17 @@ let courses: any = [
             <ul>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
-                    <a href="https://www.youtube.com/c/UlbiTV" target={"_blank"}>Ulbi TV (React, Redux, Typescript,
+                    <a href="https://www.youtube.com/c/UlbiTV"  rel="noreferrer" target={"_blank"}>Ulbi TV (React, Redux, Typescript,
                         Тестирование)</a></li>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
                     <a href="https://www.youtube.com/c/%D0%90%D0%9D%D0%93%D0%9B%D0%98%D0%99%D0%A1%D0%9A%D0%98%D0%99%D0%AF%D0%97%D0%AB%D0%9A%D0%9F%D0%9E%D0%9F%D0%9B%D0%95%D0%99%D0%9B%D0%98%D0%A1%D0%A2%D0%90%D0%9C"
-                       target={"_blank"}>АНГЛИЙСКИЙ ЯЗЫК ПО ПЛЕЙЛИСТАМ</a> (A0,A1, <span
+                       target={"_blank"} rel="noreferrer">АНГЛИЙСКИЙ ЯЗЫК ПО ПЛЕЙЛИСТАМ</a> (A0,A1, <span
                         className={"text-lime-7d00"}>(A2)</span>, ... )
                 </li>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
-                    <a href="https://www.youtube.com/c/ITKAMASUTRA" target={"_blank"}>IT-KAMASUTRA </a> (React, Redux,
+                    <a href="https://www.youtube.com/c/ITKAMASUTRA" rel="noreferrer" target={"_blank"}>IT-KAMASUTRA </a> (React, Redux,
                     NextJS, Typescript)
                 </li>
                 <li>и др. (Непомнящий, Дударь, Минин, Stashchuk, Archakov, RED Group, Собеседования ...)</li>
@@ -78,7 +79,7 @@ const HomePage: FC = () => {
         <div className="col-span-6">
             <section className="text-gray-600 body-font py-5 ">
                 <div className="container mx-auto flex px-5 mb-10 items-center justify-center flex-col">
-                    <img className="lg:w-1/6 md:w-2/6 w-4/6 mb-10 object-cover object-center rounded-full" alt="hero"
+                    <Image className="lg:w-1/6 md:w-2/6 w-4/6 mb-10 object-cover object-center rounded-full" alt="hero"
                          src={Photo.src}/>
                     <div className="text-center lg:w-2/3 w-full">
                         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Александр
@@ -196,9 +197,9 @@ const HomePage: FC = () => {
                                 <div className={"flex items-center"}><Icon icon={SiGmail} color={"#b94444"}/>
                                     <a href="mailto:sklevzhic@gmail.com">sklevzhic@gmail.com</a></div>
                                 <div className={"flex justify-center  mt-4"}>
-                                    <a href={"https://t.me/sklevzhic"} target={"_blank"}><Icon icon={SiTelegram} color={"#3297dc"}/></a>
-                                    <a href={"viber://chat?number=+375291095895"} target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
-                                    <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"} target={"_blank"}><Icon icon={SiWhatsapp} color={"#6dde6f"}/></a>
+                                    <a href={"https://t.me/sklevzhic"}  rel="noreferrer" target={"_blank"}><Icon icon={SiTelegram} color={"#3297dc"}/></a>
+                                    <a href={"viber://chat?number=+375291095895"}  rel="noreferrer" target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
+                                    <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}  rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp} color={"#6dde6f"}/></a>
                                 </div>
                             </div>
                         </div>

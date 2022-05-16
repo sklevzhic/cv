@@ -1,13 +1,11 @@
-import React, {FC, useEffect} from "react";
+import React, { FC } from "react";
 
 import Select from 'react-select';
 import {icons} from "../consts/icons";
 import Icon from "./Icon";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {ITag} from "../models/ITag";
 import { useRouter } from "next/router";
-// import { setTechnologies } from "../../store/slices/portfolioSlice";
 
 interface FilterInputItemProps {
 

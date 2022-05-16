@@ -39,19 +39,19 @@ const ProjectPage: FC = () => {
 
                         {
                             activeProduct?.technologies && activeProduct.technologies.split(",").map(technology => {
-                                return <TechnologyItem icon={technology.trim()}/>
+                                return <TechnologyItem key={technology} icon={technology.trim()}/>
                             })
                         }
 
                         <div className="w-full mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                             <div className={"rounded-md shadow disabled"}>
-                                <a href={activeProduct?.linkDemo} target={"_blank"}
+                                <a href={activeProduct?.linkDemo} target={"_blank"} rel="noreferrer"
                                    className={cn("w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md " +
                                        "text-white bg-lime-600 hover:bg-lime-700 md:py-4 md:text-lg md:px-10", {"pointer-events-none cursor-not-allowed bg-lime-100 o text-black": !activeProduct?.linkDemo} )}>
                                     Демо </a>
                             </div>
                             <div className="mt-3 sm:mt-0 sm:ml-3">
-                                <a href={activeProduct?.linkCode} target={"_blank"}
+                                <a href={activeProduct?.linkCode} target={"_blank"} rel="noreferrer"
                                    className={cn("w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md" +
                                        "text-black bg-gray-100 hover:bg-gray-200 md:py-4 md:text-lg md:px-10",  {"pointer-events-none cursor-not-allowed bg-gray-100 o text-black": !activeProduct?.linkCode})}> Код </a>
                             </div>

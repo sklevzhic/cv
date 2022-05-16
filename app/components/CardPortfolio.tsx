@@ -12,7 +12,7 @@ interface CardPortfolioProps {
 const CardPortfolio: FC<CardPortfolioProps> = ({el}) => {
     return <Link href={"portfolio/" + el.id}>
         <div
-            className="min-w-[16em] max-w-[19em] bg-white rounded-lg border border-gray-200 shadow-md mb-3 cursor-pointer">
+            className="min-w-[16em] max-w-[19em] bg-white rounded-lg border border-gray-200 mb-3 cursor-pointer">
             <figcaption className="h-44 overflow-hidden border-b">
                 <img
                     src={(typeof el.image === "string") ? el.image : el.image.src}

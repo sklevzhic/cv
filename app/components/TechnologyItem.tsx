@@ -16,7 +16,6 @@ interface TechnologyItemProps {
 
 const TechnologyItem: FC<TechnologyItemProps> = ({icon, small = false}) => {
     let Icon = icons[icon]?.icon || SiAccusoft
-    let name = icons[icon]?.name || icon
     let label = icons[icon]?.label
     let color = icons[icon]?.color
     if (small) {

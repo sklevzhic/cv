@@ -27,10 +27,10 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
     // console.log(tagsURL)
 
 
-    let onChangeTechnologies = (tags: ITag[]) => {
-        let values = tags.map((el) => el.value).join(",")
-        router.push({ href: '/', query: { tags: values  } });
-    }
+    // let onChangeTechnologies = (tags: ITag[]) => {
+    //     let values = tags.map((el) => el.value).join(",")
+    //     router.push({ href: '/', query: { tags: values  } });
+    // }
 
     let arrForSelect: any[] = Object.keys(icons).map(key => {
         return {
@@ -57,7 +57,7 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
         defaultValue={technologies}
         placeholder={"Выбрать технологию"}
         formatOptionLabel={formatOptionLabel}
-        onChange={onChangeTechnologies}
+        // onChange={onChangeTechnologies}
         isMulti
         name="colors"
         options={arrForSelect}

@@ -5,23 +5,28 @@ import {HiSelector, HiCheck} from "react-icons/hi"
 
 import {icons} from "../consts/icons";
 import Icon from "./Icon";
-
+import {useDispatch} from "react-redux";
+import { useRouter } from "next/router";
+let arrForSelect: any[] = Object.keys(icons).map(key => {
+    return {
+        "value": key,
+        "label": icons[key].label,
+        "icon": icons[key].icon,
+        "color": icons[key].color,
+    }
+})
 interface FilterInputItemProps {
 
 }
 
 const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
-    let arrForSelect: any[] = Object.keys(icons).map(key => {
-        return {
-            "value": key,
-            "label": icons[key].label,
-            "icon": icons[key].icon,
-            "color": icons[key].color,
-        }
-    })
-    const [selected, setSelected] = useState(arrForSelect[0])
-    console.log(selected)
-    console.log(arrForSelect[0])
+    const router = useRouter()
+    const dispatch = useDispatch()
+    const [selected, setSelected] = useState(arrForSelect[1])
+    const changeFilter = (value: any) => {
+        // setSelected
+
+    }
 
     return (
         <Listbox value={selected} onChange={setSelected}>
@@ -32,8 +37,8 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
                         <Listbox.Button
                                 className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                               <span className="flex items-center">
-                                  <Icon icon={selected.icon} color={selected.color}/>
-                                <span className="ml-3 block truncate">{selected.label}</span>
+                                  <Icon icon={selected.icon} color={selected?.color}/>
+                                <span className="ml-3 block truncate">{selected?.label}</span>
                               </span>
                             <span
                                 className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -53,7 +58,7 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
                                 {arrForSelect.map((item) => {
                                     return <Listbox.Option
                                         key={item.id}
-                                        className={({active}) =>
+                                        className={({ active }) =>
                                             classNames(
                                                 active ? 'text-white bg-indigo-600' : 'text-gray-900',
                                                 'cursor-default select-none relative py-2 pl-3 pr-9'
@@ -97,58 +102,3 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
 }
 
 export default FilterInputItem
-
-
-// const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
-//     const router = useRouter();
-//     const dispatch = useDispatch()
-//
-//     let { technologies } = useSelector((state: RootState) => state.portfolio)
-//
-//
-//     let tagsURL = router.query?.tags
-//     //
-//     // useEffect(() => {}, )
-//     // console.log(tagsURL)
-//
-//
-//     // let onChangeTechnologies = (tags: ITag[]) => {
-//     //     let values = tags.map((el) => el.value).join(",")
-//     //     router.push({ href: '/', query: { tags: values  } });
-//     // }
-//
-//     let arrForSelect: any[] = Object.keys(icons).map(key => {
-//         return {
-//             "value": key,
-//             "label": icons[key].label,
-//             "icon": icons[key].icon,
-//             "color": icons[key].color,
-//         }
-//     })
-//
-//     const formatOptionLabel = ({value, label, icon, color}: any) => (
-//         <div className={"flex flex-row items-center"}>
-//             <Icon color={color} icon={icon} />
-//             <div>
-//                 {label}
-//             </div>
-//         </div>
-//     );
-//
-//
-//
-//
-//     return <Select
-//         defaultValue={technologies}
-//         placeholder={"Выбрать технологию"}
-//         formatOptionLabel={formatOptionLabel}
-//         // onChange={onChangeTechnologies}
-//         isMulti
-//         name="colors"
-//         options={arrForSelect}
-//         className="basic-multi-select sm:w-full md:w-full lg:w-2/6 "
-//         classNamePrefix="select"
-//     />
-// }
-//
-// export default FilterInputItem

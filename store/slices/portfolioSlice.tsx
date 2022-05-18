@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {AnyAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import ImageCrypto from "../../app/assets/projects/crypto.jpg";
 import ImageCalendar from "../../app/assets/projects/calendar.jpg";
 import ImageEnglish from "../../app/assets/projects/english.jpg";
@@ -14,7 +14,7 @@ import {IProject} from "../../app/models/IProject";
 export interface PortfolioState {
     items: IProject[],
     activeProject: IProject,
-    technologies: string[]
+    technologies: string
 }
 
 const initialState: PortfolioState = {
@@ -111,22 +111,35 @@ const initialState: PortfolioState = {
         },
     ],
     activeProject: {} as IProject,
-    technologies: [] as string[]
+    technologies: ""
 }
 
 export const portfolioSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
-        getActiveProject: (state, action:PayloadAction<string>) => {
-            state.activeProject = state.items.filter(el => el.id == action.payload)[0]
+        getActiveProject: (state, action: PayloadAction<string>) => {
+            state.activeProject = state.items.filter(el => el.id.toString() === action.payload.toString())[0]
         },
-        setTechnologies: (state, action:PayloadAction<string[]>) => {
-            state.technologies = action.payload
+        setTechnologies: (state, action: PayloadAction<string>) => {
+            state.technologies = action.payload;
+            state.items = state.items.map(el => {
+                if (el.technologies.includes(action.payload)) {
+                    return {
+                        ...el,
+                        visible: true
+                    }
+                } else {
+                    return {
+                        ...el,
+                        visible: false
+                    }
+                }
+            })
         },
     },
 })
 
-export const { getActiveProject } = portfolioSlice.actions
+export const { getActiveProject, setTechnologies } = portfolioSlice.actions
 
 export default portfolioSlice.reducer

@@ -14,5 +14,6 @@ export interface IProject {
     id: string | number,
     technologies: string,
     linkDemo: string,
-    linkCode: string
+    linkCode: string,
+    visible?: boolean
 }

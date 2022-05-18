@@ -10,6 +10,9 @@ interface CardPortfolioProps {
 }
 
 const CardPortfolio: FC<CardPortfolioProps> = ({el}) => {
+    if (!el.visible) {
+        return <></>
+    }
     return <Link href={"portfolio/" + el.id}>
         <div
             className="min-w-[16em] max-w-[19em] bg-white rounded-lg border border-gray-200 mb-3 cursor-pointer">

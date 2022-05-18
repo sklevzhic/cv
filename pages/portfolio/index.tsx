@@ -19,9 +19,11 @@ const PortfolioPage: FC = () => {
 
             <div className={"shadow flex flex-wrap justify-evenly"}>
                 {
-                    projects.map((el: IProject) => {
-                        return <CardPortfolio key={el.id} el={el}/>
-                    })
+                    projects.some(el => el.visible === true)
+                        ? projects.map((el: IProject) => {
+                            return <CardPortfolio key={el.id} el={el}/>
+                        })
+                        : <>Ничего нет</>
                 }
             </div>
 

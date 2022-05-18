@@ -4,7 +4,7 @@ import TitlePage from "../../app/components/TitlePage";
 import cn from "classnames";
 import TechnologyItem from "../../app/components/TechnologyItem";
 import {useDispatch, useSelector} from "react-redux";
-import {getActiveProject} from "../../store/slices/portfolioSlice";
+import { getActiveProject } from "../../store/slices/portfolioSlice";
 import {RootState} from "../../store";
 import {useRouter} from "next/router";
 
@@ -12,12 +12,11 @@ const ProjectPage: FC = () => {
 
     const dispatch = useDispatch()
     const router = useRouter()
-    const {project} = router.query
+    const { project } = router.query
 
     useEffect(() => {
-
         // @ts-ignore
-        dispatch(getActiveProject(project))
+        dispatch(getActiveProject( project ))
     }, [project])
 
     const activeProduct = useSelector((state: RootState) => state.portfolio.activeProject)

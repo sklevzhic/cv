@@ -9,6 +9,8 @@ import ImageTable from "../../app/assets/projects/table.jpg";
 import ImageTech from "../../app/assets/projects/tech.jpg";
 import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
+import ImageDes1 from "../../app/assets/projects/figma1.jpg";
+import ImageDes2 from "../../app/assets/projects/figma2.png";
 import {IProject} from "../../app/models/IProject";
 
 export interface PortfolioState {
@@ -31,7 +33,7 @@ const initialState: PortfolioState = {
         {
             name: "Calendar",
             image: ImageCalendar,
-            description: "тестовое задание ()",
+            description: "-",
             id: 2,
             technologies: "react, redux, typescript",
             linkDemo: "",
@@ -87,7 +89,7 @@ const initialState: PortfolioState = {
             image: ImageTech,
             description: "Приложение для учета техники",
             id: 8,
-            technologies: "react, redux",
+            technologies: "react, redux, material",
             linkDemo: "https://sklevzhic.github.io/tech",
             linkCode: "https://github.com/sklevzhic/tech/tree/master"
         },
@@ -108,6 +110,24 @@ const initialState: PortfolioState = {
             technologies: "react, redux",
             linkDemo: "",
             linkCode: "https://github.com/sklevzhic/weather-app"
+        },
+        {
+            name: "Design 1",
+            image: ImageDes1,
+            description: "Создание дизайна, верстка страницы сайта",
+            id: 11,
+            technologies: "figma, html, css",
+            linkDemo: "",
+            linkCode: ""
+        },
+        {
+            name: "Design 2",
+            image: ImageDes2,
+            description: "Создание дизайна, верстка страницы сайта",
+            id: 12,
+            technologies: "figma, html, css",
+            linkDemo: "",
+            linkCode: ""
         },
     ],
     activeProject: {} as IProject,

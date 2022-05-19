@@ -12,12 +12,11 @@ const PortfolioPage: FC = () => {
     return (
         <div className={"relative"}>
             <TitlePage text={"Портфолио"}/>
-
             <div className={"my-3 flex flex-row items-center justify-end w-full"}>
                 <FilterInputItem/>
             </div>
             <div className={"shadow flex flex-wrap justify-evenly"}>
-                <CardsPortfolio projects={projects} />
+                <CardsPortfolio projects={projects}/>
             </div>
         </div>
     )

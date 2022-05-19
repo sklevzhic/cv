@@ -1,0 +1,10 @@
+• React+Redux
+• Type Script
+• React Storybook
+• gRPC Web
+• Webpack
+• Emotion
+• Stylus
+• Next.js
+• Redux Saga
+• Redux Thunk

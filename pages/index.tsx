@@ -94,9 +94,9 @@ const HomePage: FC = () => {
                                     className="inline-flex text-white bg-lime-500 border-0 py-2 px-6 focus:outline-none hover:bg-lime-600 rounded text-lg">Портфолио
                                 </button>
                             </Link>
-                            <button
+                            <a href={"#contacts"}
                                 className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Контакты
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@ const HomePage: FC = () => {
                 </div>
             </section>
 
-            <section className="text-gray-600 body-font bg-gray-50 rounded-2xl">
+            <section className="text-gray-600 body-font bg-gray-50 rounded-2xl" id={"contacts"}>
                 <div className="container px-5 py-10 mx-auto">
                     <div className="text-center mb-10">
                         <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Контакты</h1>

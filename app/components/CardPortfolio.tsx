@@ -18,7 +18,7 @@ const CardPortfolio: FC<CardPortfolioProps> = ({el}) => {
                 <img
                     src={(typeof el.image === "string") ? el.image : el.image.src}
                     alt={el.name}
-                    className="w-full h-60" loading="lazy"/>
+                    className="w-full" loading="lazy"/>
             </figcaption>
             <div className="p-3 relative">
                 <div

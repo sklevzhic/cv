@@ -26,7 +26,7 @@ const initialState: PortfolioState = {
             id: 1,
             technologies: "react, redux, typescript, antd",
             linkDemo: "",
-            linkCode: ""
+            linkCode: "https://github.com/sklevzhic/crypto-app"
         },
         {
             name: "Calendar",
@@ -35,7 +35,7 @@ const initialState: PortfolioState = {
             id: 2,
             technologies: "react, redux, typescript",
             linkDemo: "",
-            linkCode: ""
+            linkCode: "https://github.com/sklevzhic/calendar"
         },
         {
             name: "English",
@@ -43,8 +43,8 @@ const initialState: PortfolioState = {
             description: "Тренажер английского языка",
             id: 3,
             technologies: "next, redux, antd, typescript ",
-            linkDemo: "",
-            linkCode: ""
+            linkDemo: "https://english-psi.vercel.app/tests/a0",
+            linkCode: "https://github.com/sklevzhic/english"
         },
         {
             name: "Hexal",
@@ -107,7 +107,7 @@ const initialState: PortfolioState = {
             id: 10,
             technologies: "react, redux",
             linkDemo: "",
-            linkCode: ""
+            linkCode: "https://github.com/sklevzhic/weather-app"
         },
     ],
     activeProject: {} as IProject,

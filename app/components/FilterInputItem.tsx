@@ -26,12 +26,14 @@ const FilterInputItem: FC<FilterInputItemProps> = ({}) => {
     const router = useRouter()
     const dispatch = useDispatch()
     const [selected, setSelected] = useState(arrForSelect[1])
-    const technologies = useSelector((state: RootState) => state.portfolio.technologies)
+    const technologiesStore = useSelector((state: RootState) => state.portfolio.technologies)
     const items = useSelector((state: RootState) => state.portfolio.items)
-
    useEffect(() => {
-       // @ts-ignore
-       dispatch(setTechnologies( router.query.technology ))
+       if (router.query.technology) {
+           dispatch(setTechnologies( router.query.technology.toString() ))
+       } else {
+           dispatch(setTechnologies( "all" ))
+       }
    }, [router.query.technology])
 
     const changeFilter = (obj: any) => {

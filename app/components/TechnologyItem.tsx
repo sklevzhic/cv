@@ -1,18 +1,11 @@
 import React, {FC} from "react";
-import {
-    SiAccusoft,
-
-} from "react-icons/si";
-import { icons } from "../consts/icons";
-
-
+import { SiAccusoft } from "react-icons/si";
+import {icons} from "../consts/icons";
 
 interface TechnologyItemProps {
     icon: any,
     small?: boolean
 }
-
-
 
 const TechnologyItem: FC<TechnologyItemProps> = ({icon, small = false}) => {
     let Icon = icons[icon]?.icon || SiAccusoft

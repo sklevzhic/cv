@@ -124,17 +124,8 @@ export const portfolioSlice = createSlice({
         setTechnologies: (state, action: PayloadAction<string>) => {
             state.technologies = action.payload;
             state.items = state.items.map(el => {
-                if (el.technologies.includes(action.payload)) {
-                    return {
-                        ...el,
-                        visible: true
-                    }
-                } else {
-                    return {
-                        ...el,
-                        visible: false
-                    }
-                }
+                if ((el.technologies.includes(action.payload)) || action.payload === "all" ) return { ...el, visible: true }
+                else return { ...el, visible: false }
             })
         },
     },

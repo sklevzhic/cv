@@ -29,7 +29,7 @@ export const icons: any = {
         color: "#000000"
     },
     "redux": {
-        label: "Redux/Toolkit",
+        label: "Redux",
         icon: SiRedux,
         color: "#7046b2"
     },
@@ -83,21 +83,21 @@ export const icons: any = {
         color: "#d7650a"
     },
 
-    "websocket": {
-        label: "Websockets",
-        icon: SiNextdotjs,
-        color: "#000000"
-    },
+    // "websocket": {
+    //     label: "Websockets",
+    //     icon: SiNextdotjs,
+    //     color: "#000000"
+    // },
     "restapi": {
         label: "REST API",
         icon: SiNextdotjs,
         color: "#000000"
     },
-    "Docker": {
-        label: "Docker",
-        icon: SiDocker,
-        color: "#0db7ed"
-    },
+    // "Docker": {
+    //     label: "Docker",
+    //     icon: SiDocker,
+    //     color: "#0db7ed"
+    // },
     "photoshop": {
         label: "Photoshop",
         icon: SiAdobephotoshop,

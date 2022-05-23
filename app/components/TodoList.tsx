@@ -1,7 +1,8 @@
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import TodoItem from "./TodoItem";
 import {ITodo} from "../models/ITodo";
 import AddNewItem from "./AddNewItem";
+import { Dialog } from '@headlessui/react'
 
 
 interface TodoListProps {
@@ -10,6 +11,7 @@ interface TodoListProps {
 }
 
 const TodoList: FC<TodoListProps> = ({title, items}) => {
+
     return <div className={"border m-2 p-1 bg-gray-100 text-center h-auto"}>
         <div className={"flex justify-between border-b p-1"}>
             <div className={"text-xl"}>{title}</div>
@@ -25,6 +27,7 @@ const TodoList: FC<TodoListProps> = ({title, items}) => {
                 <AddNewItem />
             </div>
         </div>
+
     </div>
 }
 

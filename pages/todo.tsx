@@ -2,17 +2,18 @@ import {NextPage} from "next";
 import {useSelector} from "react-redux";
 import {RootState} from "../store";
 import TitlePage from "../app/components/TitlePage";
-import React from "react";
+import React, {useState} from "react";
 import TodoList from "../app/components/TodoList";
-import { ITodo } from "../app/models/ITodo";
+import {ITodo} from "../app/models/ITodo";
+import {Dialog} from "@headlessui/react";
 
 const todos = [
     {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
-},
+        "userId": 1,
+        "id": 1,
+        "title": "delectus aut autem",
+        "completed": false
+    },
     {
         "userId": 1,
         "id": 2,
@@ -28,8 +29,8 @@ const todos = [
 ]
 const todos1 = [] as ITodo[]
 
-const HomePage: NextPage = () => {
-    // let [one, wto, three] = useSelector((state: RootState) => state.portfolio.items)
+const TodoPage: NextPage = () => {
+    let [isOpen, setIsOpen] = useState(true)
 
     return <div>
         <TitlePage text={"Todo List"}/>
@@ -40,8 +41,7 @@ const HomePage: NextPage = () => {
             <div>add a new list</div>
         </div>
 
-
     </div>
 }
 
-export default HomePage
+export default TodoPage

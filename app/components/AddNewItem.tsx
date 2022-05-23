@@ -1,6 +1,8 @@
-import React, {FC, useState} from "react";
+import React, {FC, useRef, useState} from "react";
 import {CgClose} from "react-icons/cg"
 import cn from "classnames"
+import { useClickOutside } from "../hooks/useClickOutside";
+
 
 interface AddNewItemProps {
 
@@ -9,24 +11,29 @@ interface AddNewItemProps {
 const AddNewItem: FC<AddNewItemProps> = ({}) => {
     let [text, setText] = useState<string>("")
     let [editable, setEditable] = useState<boolean>(false)
+    let outsideRef = useRef(null)
+    
     const handleEditable = () => {
         setEditable(!editable)
     }
-
     const addTodo = () => {
-        console.log(text)
         setEditable(!editable)
         setText("")
     }
     const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value)
     }
-
+    const handleClickOutside = () => {
+        console.log("out")
+    }
+    useClickOutside(outsideRef, handleClickOutside)
+    
     return <div className={"hover:bg-gray-200 rounded mt-1 p-0.5"}>
+
         {
             editable
-                ? <div>
-                    <textarea value={text} onChange={handleTextInput}
+                ? <div >
+                    <textarea ref={outsideRef} value={text} onChange={handleTextInput}
                               className={cn("form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300" +
                                   "                       rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-lime-600 focus:outline-none")}></textarea>
                     <div className={"flex flex-row items-center"}>

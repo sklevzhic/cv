@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import portfolioReducer from "../store/slices/portfolioSlice"
+import todoReducer from "../store/slices/todoSlice"
 
 export const store = configureStore({
     reducer: {
-        portfolio: portfolioReducer
+        portfolio: portfolioReducer,
+        todo: todoReducer
     },
 })
 

@@ -21,7 +21,7 @@ export const todoSlice = createSlice({
             }
         },
 
-        saveDesksToLocalStorage: (state) => {
+        saveDesks: (state) => {
             localStorage.setItem("users", JSON.stringify(state.desks))
         },
 

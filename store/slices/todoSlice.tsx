@@ -46,7 +46,6 @@ export const todoSlice = createSlice({
                 }
             })
         },
-
         removeTodo: ( state, action: PayloadAction<{ idDesk: number, id: number }> ) => {
             state.desks = state.desks.map(desk => {
                 if (action.payload.idDesk === desk.id) {
@@ -80,11 +79,21 @@ export const todoSlice = createSlice({
                 }
             })
         },
+        removeDesk: ( state, action: PayloadAction<number> ) => {
+            state.desks = state.desks.filter(desk => desk.id !== action.payload)
+        },
+        setNewDesk: ( state, action: PayloadAction<string> ) => {
+            state.desks = [... state.desks, {
+                id: Date.now(),
+                name: action.payload,
+                todos: []
+            }]
+        },
 
 
     },
 })
 
-export const {setTodo, removeTodo, changeTitle} = todoSlice.actions
+export const {setTodo, removeTodo, changeTitle, removeDesk, setNewDesk} = todoSlice.actions
 
 export default todoSlice.reducer

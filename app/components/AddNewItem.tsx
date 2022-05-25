@@ -9,38 +9,32 @@ import InputText from "./InputText";
 
 
 interface AddNewItemProps {
-    idDesk: number
+    textBtn: string,
+    save: (t: string) => void,
 }
 
-const AddNewItem: FC<AddNewItemProps> = ({idDesk}) => {
-    const dispatch = useDispatch()
-
-
+const AddNewItem: FC<AddNewItemProps> = ({textBtn, save}) => {
     let [text, setText] = useState<string>("")
     let [editable, setEditable] = useState<boolean>(false)
 
-    const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setText(e.target.value)
-    }
-    const addTodo = () => {
-        dispatch(setTodo({idDesk, text}))
-        setEditable(!editable)
+    const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)
+    const handlerSave = () => {
+        save(text)
+        setEditable(false)
         setText("")
     }
     const handleClickOutside = () => {
-
         if (isEmpty(text)) {
             setEditable(false)
             setText("")
         } else {
-            dispatch(setTodo({idDesk, text}))
+            save(text)
             setEditable(false)
             setText("")
         }
     }
     const handleEditable = () => {
         setEditable(!editable)
-        setText("")
     }
 
     return <div className={"hover:bg-gray-200 rounded mt-1 p-0.5"}>
@@ -52,9 +46,9 @@ const AddNewItem: FC<AddNewItemProps> = ({idDesk}) => {
                     handlerText={handleTextInput}
                     handlerClose={() => setEditable(!editable)}
                     handleClickOutside={handleClickOutside}
-                    handlerSave={addTodo}
+                    handlerSave={handlerSave}
                 />
-                : <div className={"cursor-pointer"} onClick={handleEditable}>+ Добавить карточку</div>
+                : <div className={"cursor-pointer"} onClick={handleEditable}>{textBtn}</div>
         }
     </div>
 }

@@ -11,6 +11,7 @@ import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
+import ImageTodo from "../../app/assets/projects/todo.png";
 import {IProject} from "../../app/models/IProject";
 
 export interface PortfolioState {
@@ -127,6 +128,15 @@ const initialState: PortfolioState = {
             id: 12,
             technologies: "figma, html, css",
             linkDemo: "",
+            linkCode: ""
+        },
+        {
+            name: "TodoList",
+            image: ImageTodo,
+            description: "В разработке",
+            id: 13,
+            technologies: "tailwind, redux",
+            linkDemo: "/todo",
             linkCode: ""
         },
     ],

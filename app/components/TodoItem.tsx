@@ -2,20 +2,30 @@ import React, {FC, useState} from "react";
 import {MdEdit, MdClose} from "react-icons/md"
 import {useDispatch} from "react-redux";
 import InputText from "./InputText";
+import {changeTitle} from "../../store/slices/todoSlice";
 
 interface TodoItemProps {
     text: string,
     deleteTodoItem: () => void,
-    changeTitleTodo: () => void,
+    idDesk: number,
+    id: number
 }
 
-const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, changeTitleTodo}) => {
+const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
+    const dispatch = useDispatch()
+
     const [editable, setEditable] = useState(false)
     const [textInput, setTextInput] = useState(text)
 
     const handlerTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTextInput(e.target.value)
     }
+
+    const changeTitleTodo = () => {
+        dispatch(changeTitle({idDesk, id, title: textInput}))
+        setEditable(false)
+    }
+
 
     return <>
         {

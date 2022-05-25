@@ -1,8 +1,7 @@
-import React, {FC, useRef} from "react";
+import React, {FC, useCallback, useEffect, useRef} from "react";
 import cn from "classnames"
 import {CgClose} from "react-icons/cg"
 import {useClickOutside} from "../hooks/useClickOutside";
-
 
 
 interface InputNewCardProps {
@@ -14,12 +13,19 @@ interface InputNewCardProps {
     handleClickOutside: () => void,
 }
 
-const InputText: FC<InputNewCardProps> = ({text,btnText , handlerText, handlerClose, handlerSave, handleClickOutside}) => {
-    let outsideRef = useRef(null)
+const InputText: FC<InputNewCardProps> = (props) => {
+    const { text,btnText, handlerText,handlerClose,handlerSave,handleClickOutside } = props
+    const outsideRef = useRef(null)
+
     useClickOutside(outsideRef, handleClickOutside)
 
+    const handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.keyCode === 13) handlerSave()
+        if (e.keyCode === 27) handlerClose()
+    }
+
     return <div ref={outsideRef}>
-<textarea value={text} onChange={handlerText}
+        <textarea autoFocus={true} value={text} onChange={handlerText} onKeyUp={handleKeyUp}
           className={cn("form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300" +
               "rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-lime-600 focus:outline-none")}></textarea>
         <div className={"flex flex-row items-center"}>

@@ -3,7 +3,6 @@ import React, {FC} from "react";
 import Header from "../components/Header";
 import {SiLinkedin, SiVk, SiHackerearth, SiTelegram, SiHabr, SiGithub} from "react-icons/si"
 import Icon from "../components/Icon";
-import { convertDate } from "../utils/dates"
 
 interface LayoutProps {
     children: React.ReactNode,
@@ -33,7 +32,6 @@ const MainLayout: FC<LayoutProps> = ({children}) => {
                         <p className="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0"> date
                         </p>
                         <div className="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
-
                             {
                                 socialLinks.map((el: any) => {
                                     return <a key={el.name} href={el.link} target={"_blank"} className="text-gray-400 hover:text-gray-500">
@@ -42,7 +40,6 @@ const MainLayout: FC<LayoutProps> = ({children}) => {
                                     </a>
                                 })
                             }
-
                         </div>
                     </div>
                 </section>

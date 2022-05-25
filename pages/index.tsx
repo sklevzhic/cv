@@ -117,11 +117,12 @@ const HomePage: FC = () => {
 
                             {
                                 Object.keys(icons).map(key => {
-                                    return <div key={key} onClick={() => console.log("a")}
-                                                className={"flex cursor-pointer w-44 items-center p-0.5 hover:bg-lime-100"}>
-                                        <Icon color={icons[key].color} icon={icons[key].icon}/>
-                                        {icons[key].label}
-                                    </div>
+                                    return <Link key={key} href={"/portfolio?technology=" + key}>
+                                        <a className={"flex cursor-pointer w-44 items-center p-0.5 hover:bg-lime-100"}>
+                                            <Icon color={icons[key].color} icon={icons[key].icon}/>
+                                            {icons[key].label}
+                                        </a>
+                                    </Link>
                                 })
                             }
 

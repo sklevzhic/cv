@@ -7,29 +7,24 @@ export interface TodoState {
 }
 
 const initialState: TodoState = {
-    desks: [
-        {
-            id: 1,
-            name: "todo",
-            todos: []
-        },
-        {
-            id: 2,
-            name: "doing",
-            todos: []
-        },
-        {
-            id: 3,
-            name: "completed",
-            todos: []
-        },
-    ],
+    desks: [],
 }
 
 export const todoSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
+        initialDesks: (state) => {
+            let users = localStorage.getItem("users")
+            if (!!users) {
+                state.desks = JSON.parse(users)
+            }
+        },
+
+        saveDesksToLocalStorage: (state) => {
+            localStorage.setItem("users", JSON.stringify(state.desks))
+        },
+
         setTodo: ( state, action: PayloadAction<{ idDesk: number, text: string }> ) => {
             state.desks = state.desks.map(desk => {
                 if (action.payload.idDesk === desk.id) {
@@ -45,6 +40,7 @@ export const todoSlice = createSlice({
                     return desk
                 }
             })
+            localStorage.setItem("users", JSON.stringify(state.desks))
         },
         removeTodo: ( state, action: PayloadAction<{ idDesk: number, id: number }> ) => {
             state.desks = state.desks.map(desk => {
@@ -57,6 +53,8 @@ export const todoSlice = createSlice({
                     return desk
                 }
             })
+            localStorage.setItem("users", JSON.stringify(state.desks))
+
         },
         changeTitle: ( state, action: PayloadAction<{ idDesk: number, id: number, title: string }> ) => {
             state.desks = state.desks.map(desk => {
@@ -78,9 +76,11 @@ export const todoSlice = createSlice({
                     return desk
                 }
             })
+            localStorage.setItem("users", JSON.stringify(state.desks))
         },
         removeDesk: ( state, action: PayloadAction<number> ) => {
             state.desks = state.desks.filter(desk => desk.id !== action.payload)
+            localStorage.setItem("users", JSON.stringify(state.desks))
         },
         setNewDesk: ( state, action: PayloadAction<string> ) => {
             state.desks = [... state.desks, {
@@ -88,12 +88,13 @@ export const todoSlice = createSlice({
                 name: action.payload,
                 todos: []
             }]
+            localStorage.setItem("users", JSON.stringify(state.desks))
         },
 
 
     },
 })
 
-export const {setTodo, removeTodo, changeTitle, removeDesk, setNewDesk} = todoSlice.actions
+export const {initialDesks, setTodo, removeTodo, changeTitle, removeDesk, setNewDesk} = todoSlice.actions
 
 export default todoSlice.reducer

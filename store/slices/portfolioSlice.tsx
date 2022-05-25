@@ -135,7 +135,7 @@ const initialState: PortfolioState = {
             image: ImageTodo,
             description: "В разработке",
             id: 13,
-            technologies: "tailwind, redux",
+            technologies: "react, typescript, redux, tailwind, localstorage",
             linkDemo: "/todo",
             linkCode: ""
         },

@@ -37,7 +37,7 @@ const AddNewItem: FC<AddNewItemProps> = ({textBtn, save}) => {
         setEditable(!editable)
     }
 
-    return <div className={"hover:bg-gray-200 rounded mt-1 p-0.5"}>
+    return <div className={"hover:bg-gray-200 min-w-[200px]  rounded mt-1 p-0.5"}>
         {
             editable
                 ? <InputText

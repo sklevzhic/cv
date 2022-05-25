@@ -13,5 +13,5 @@ export interface ITodo {
 export interface IDesk {
     id: number,
     name: string,
-    todos: ITodo[]
+    todos: ITodo[] | []
 }

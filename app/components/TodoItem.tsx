@@ -27,7 +27,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
     }
 
 
-    return <>
+    return <div>
         {
             editable
                 ? <InputText text={textInput}
@@ -37,7 +37,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
                              handlerClose={() => setEditable(false)}
                              handleClickOutside={() => setEditable(false)}
                 />
-                : <div
+                : <div draggable={true}
                     className={"border flex m-0.5 p-1 bg-white items-center justify-between cursor-pointer hover:bg-gray-100 rounded"}>
                     <div>
                         <div className={"flex flex-row"}>
@@ -54,7 +54,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
 
                 </div>
         }
-    </>
+    </div>
 }
 
 export default TodoItem

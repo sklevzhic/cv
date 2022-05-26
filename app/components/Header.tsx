@@ -23,7 +23,7 @@ const solutions = [
 ]
 
 const Header: FC = () => {
-    return <header className={"sticky top-0 z-50 bg-white"}>
+    return <header className={"sticky top-0 flex-none z-50 bg-white"}>
         <Popover className="relative bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div

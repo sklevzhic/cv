@@ -23,6 +23,7 @@ const TodoPage: NextPage = () => {
     }
 
 
+
     const dragStartHandler = (e: React.DragEvent<HTMLDivElement>, desk: IDesk) => {
         setDraggableDesk(desk)
     }
@@ -63,13 +64,14 @@ const TodoPage: NextPage = () => {
 
     }
 
-    return <div>
+    return <div className={"flex flex-col max-w-7xl mx-auto overflow-hidden heightTodo"}>
+
         <TitlePage text={"Todo List"}/>
-        <div className="flex whitespace-nowrap items-start grid-cols-4 m-3 ">
+        <div className="flex whitespace-nowrap items-start grid-cols-4 m-3 bg-emerald-300">
             {
                 desks.map(desk => {
                     return <div key={desk.id}
-                                className={"desk"}
+                                className={""}
                                 onDragStart={(e) => dragStartHandler(e, desk)}
                                 onDragLeave={(e) => dragLeaveHandler(e)}
                                 onDragEnd={(e) => dragEndHandler(e)}
@@ -84,9 +86,9 @@ const TodoPage: NextPage = () => {
                     </div>
                 })
             }
-            <div className={"border m-2 p-1 bg-gray-100 text-center h-auto"}>
+            <div className={"border m-2 p-1 bg-gray-100 min-w-[20em] h-full opacity-70 hover:opacity-100"}>
                 <div className={"flex justify-between border-b p-1"}>
-                    <AddNewItem textBtn={"Add desk"} save={addDesk}/>
+                    <AddNewItem textBtn={"+ Add desk"} save={addDesk}/>
                 </div>
             </div>
         </div>

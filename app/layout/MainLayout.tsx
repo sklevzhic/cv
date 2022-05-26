@@ -19,12 +19,12 @@ let socialLinks: any = [
 const MainLayout: FC<LayoutProps> = ({children}) => {
 
     return (
-        <div className={"md:contain er md:mx-auto bg-white sticky top-0 z-50"}>
+        <div className={"md:contain md:mx-auto bg-white flex flex-col sticky top-0 z-50 min-h-screen"}>
             <Header/>
-            <main className="p-10 min-h-screen">
+            <main className="p-10 grow">
                 {children}
             </main>
-            <footer className="bg-green-50 h-2">
+            <footer className="bg-green-50 shrink-0">
                 <section className="text-gray-700 bg-white body-font">
                     <div className="container flex flex-col items-center px-8 py-8 mx-auto max-w-7xl sm:flex-row">
                         <a href="#_"

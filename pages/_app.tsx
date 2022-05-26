@@ -7,7 +7,7 @@ import { store } from "../store/index"
 import { Provider } from "react-redux";
 function MyApp({ Component, pageProps }: AppProps) {
   return <Provider store={store}>
-    <div className={"bg-gray-100 min-h-screen"}>
+    <div className={"bg-gray-100"}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

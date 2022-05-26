@@ -19,9 +19,10 @@ const AddNewItem: FC<AddNewItemProps> = ({textBtn, save}) => {
 
     const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)
     const handlerSave = () => {
-        save(text)
         setEditable(false)
+        save(text)
         setText("")
+        setEditable(true)
     }
     const handleClickOutside = () => {
         if (isEmpty(text)) {
@@ -33,11 +34,12 @@ const AddNewItem: FC<AddNewItemProps> = ({textBtn, save}) => {
             setText("")
         }
     }
-    const handleEditable = () => {
+    const handleEditable = (e: any) => {
         setEditable(!editable)
+
     }
 
-    return <div className={"hover:bg-gray-200 min-w-[200px]  rounded mt-1 p-0.5"}>
+    return <div className={"hover:bg-gray-200 w-full rounded mt-1 p-0.5"}>
         {
             editable
                 ? <InputText

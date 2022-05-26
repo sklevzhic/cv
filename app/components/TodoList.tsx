@@ -29,8 +29,8 @@ const TodoList: FC<TodoListProps> = ({title, items, idDesk}) => {
             <div className={"text-xl"}>{title}</div>
             <MdClose onClick={handlerRemoveDesk}  className={"opacity-40 hover:opacity-100"}/>
         </div>
-        <div className={"text-left"}>
-            <div className={"flex flex-col"}>
+        <div className={"text-left flex flex-col"}>
+
                 {items
                     ? items.map(el => {
                         return <TodoItem key={el.id}
@@ -43,7 +43,7 @@ const TodoList: FC<TodoListProps> = ({title, items, idDesk}) => {
                     : <>пусто</>
                 }
                 <AddNewItem save={addTodoItem}  textBtn={"+ Add card"}/>
-            </div>
+
         </div>
     </div>
 }

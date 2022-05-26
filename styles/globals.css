@@ -18,3 +18,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.heightTodo {
+  height: calc(100vh - 240px);
+}

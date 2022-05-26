@@ -14,13 +14,20 @@ interface InputNewCardProps {
 }
 
 const InputText: FC<InputNewCardProps> = (props) => {
+    useEffect(() => {
+        // @ts-ignore
+        outsideRef.current.scrollIntoView({block: "center", behavior: "smooth"})
+    }, [])
     const { text,btnText, handlerText,handlerClose,handlerSave,handleClickOutside } = props
     const outsideRef = useRef(null)
 
     useClickOutside(outsideRef, handleClickOutside)
 
     const handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.keyCode === 13) handlerSave()
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            handlerSave()
+        }
         if (e.keyCode === 27) handlerClose()
     }
 

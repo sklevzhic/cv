@@ -7,7 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      maxHeight: {
+        'noScrollFooter': "calc(100vh - 74px - 84px - 80px - 58px - 32px)",
+        "heightItemsInDesk": "calc(100vh - 74px - 84px - 80px - 58px - 32px - 125px)"
+      },
+      minHeight: {
+        "heightItemsInDesk": "calc(100vh - 74px - 84px - 80px - 58px - 32px )"
+      }
     },
   },
   plugins: [],

@@ -66,7 +66,7 @@ const TodoPage: NextPage = () => {
 
     return <div className={"todo max-w-7xl mx-auto"}>
         <TitlePage text={"Todo List"}/>
-        <div className="max-h-noScrollFooter min-h-heightItemsInDesk overflow-auto flex whitespace-nowrap items-start grid-cols-4 m-3">
+        <div className="max-h-noScrollFooter min-h-heightItemsInDesk overflow-auto flex items-start grid-cols-4 m-3">
             {
                 desks.map(desk => {
                     return <div key={desk.id}

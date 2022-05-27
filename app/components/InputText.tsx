@@ -18,7 +18,7 @@ const InputText: FC<InputNewCardProps> = (props) => {
         // @ts-ignore
         outsideRef.current.scrollIntoView({block: "center", behavior: "smooth"})
     }, [])
-    const { text,btnText, handlerText,handlerClose,handlerSave,handleClickOutside } = props
+    const { text,btnText, handlerText, handlerClose, handlerSave, handleClickOutside } = props
     const outsideRef = useRef(null)
 
     useClickOutside(outsideRef, handleClickOutside)

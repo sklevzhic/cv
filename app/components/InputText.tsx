@@ -14,13 +14,9 @@ interface InputNewCardProps {
 }
 
 const InputText: FC<InputNewCardProps> = (props) => {
-    useEffect(() => {
-        // @ts-ignore
-        outsideRef.current.scrollIntoView({block: "center", behavior: "smooth"})
-    }, [])
     const { text,btnText, handlerText, handlerClose, handlerSave, handleClickOutside } = props
     const outsideRef = useRef(null)
-
+    const visibleInput = useRef<HTMLTextAreaElement | null>(null)
     useClickOutside(outsideRef, handleClickOutside)
 
     const handleKeyUp = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -32,7 +28,7 @@ const InputText: FC<InputNewCardProps> = (props) => {
     }
 
     return <div ref={outsideRef}>
-        <textarea autoFocus={true} value={text} onChange={handlerText} onKeyUp={handleKeyUp}
+        <textarea  ref={visibleInput} autoFocus={true} value={text} onChange={handlerText} onKeyUp={handleKeyUp}
           className={cn("form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300" +
               "rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-lime-600 focus:outline-none")}></textarea>
         <div className={"flex flex-row items-center"}>

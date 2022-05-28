@@ -39,7 +39,7 @@ const Header: FC = () => {
                     </div>
                     <div className="-mr-2 -my-2 md:hidden">
                         <Popover.Button
-                            className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                            className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lime-500">
                             <span className="sr-only">Open menu</span>
                             <GiHamburgerMenu/>
                             {/*<MenuIcon className="h-6 w-6" aria-hidden="true" />*/}
@@ -50,7 +50,7 @@ const Header: FC = () => {
                         {solutions.map((item) => (
                             <Link href={item.href} key={item.name}>
                                 <a className={"flex"}>
-                                    <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                                    <item.icon className="flex-shrink-0 h-6 w-6 text-lime-600"
                                                aria-hidden="true"/>
                                     <span
                                         className="text-base font-medium text-gray-500 ml-1 hover:text-gray-900 cursor-pointer">

@@ -23,9 +23,9 @@ export const todoSlice = createSlice({
         saveDesks: (state) => {
             localStorage.setItem("users", JSON.stringify(state.desks))
         },
-        setTodo: (state, action: PayloadAction<{ idDesk: number, text: string }>) => {
+        setTodo: (state, action: PayloadAction<{ id: number, text: string }>) => {
             state.desks = state.desks.map(desk => {
-                if (action.payload.idDesk === desk.id) {
+                if (action.payload.id === desk.id) {
                     return {
                         ...desk,
                         todos: [...desk.todos, {
@@ -40,12 +40,12 @@ export const todoSlice = createSlice({
             })
             localStorage.setItem("users", JSON.stringify(state.desks))
         },
-        removeTodo: (state, action: PayloadAction<{ idDesk: number, id: number }>) => {
+        removeTodo: (state, action: PayloadAction<{ idDesk: number, idTodo: number }>) => {
             state.desks = state.desks.map(desk => {
                 if (action.payload.idDesk === desk.id) {
                     return {
                         ...desk,
-                        todos: desk.todos.filter(todo => todo.id !== action.payload.id)
+                        todos: desk.todos.filter(todo => todo.id !== action.payload.idTodo)
                     }
                 } else {
                     return desk

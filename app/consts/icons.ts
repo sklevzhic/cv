@@ -16,6 +16,8 @@ import {
 } from "react-icons/si";
 import {DiReact} from "react-icons/di";
 import {FaNodeJs} from "react-icons/fa";
+import {GrStorage} from "react-icons/gr";
+import {AiOutlineDrag} from "react-icons/ai";
 
 export const icons: any = {
     "react": {
@@ -125,5 +127,14 @@ export const icons: any = {
         icon: SiWordpress,
         color: "#5582d7"
     },
-
+    "ls": {
+        label: "LocalStorage",
+        icon: GrStorage,
+        color: "#d7650a"
+    },
+    "dnd": {
+        label: "Drag and Drop",
+        icon: AiOutlineDrag,
+        color: "#7c7b7b"
+    }
 }

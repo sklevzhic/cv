@@ -12,6 +12,7 @@ import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
+import ImageAnimation from "../../app/assets/projects/animation.png";
 import {IProject} from "../../app/models/IProject";
 
 export interface PortfolioState {
@@ -31,7 +32,26 @@ const initialState: PortfolioState = {
             linkDemo: "",
             linkCode: "https://github.com/sklevzhic/crypto-app"
         },
+
         {
+            name: "TodoList",
+            image: ImageTodo,
+            description: "TodoList. Аналог Trello. Столбцы: добавление,удаление, перемещение. " +
+                "Строки: добавление, удаление, перемещение, редактирование",
+            id: 13,
+            technologies: "react, typescript, redux, tailwind, ls, dnd",
+            linkDemo: "/todo",
+            linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/todo.tsx"
+        },
+        {
+            name: "Tech",
+            image: ImageTech,
+            description: "Приложение для учета техники",
+            id: 8,
+            technologies: "react, redux, material",
+            linkDemo: "https://sklevzhic.github.io/tech",
+            linkCode: "https://github.com/sklevzhic/tech/tree/master"
+        },        {
             name: "Calendar",
             image: ImageCalendar,
             description: "-",
@@ -41,6 +61,15 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/calendar"
         },
         {
+            name: "Weather App",
+            image: ImageWeather,
+            description: "тестовое задание (погода )",
+            id: 10,
+            technologies: "react, redux",
+            linkDemo: "",
+            linkCode: "https://github.com/sklevzhic/weather-app"
+        },
+        {
             name: "English",
             image: ImageEnglish,
             description: "Тренажер английского языка",
@@ -48,6 +77,15 @@ const initialState: PortfolioState = {
             technologies: "next, redux, antd, typescript ",
             linkDemo: "https://english-psi.vercel.app/tests/a0",
             linkCode: "https://github.com/sklevzhic/english"
+        },
+        {
+            name: "Sort Table",
+            image: ImageTable,
+            description: "Сортировка таблицы по 3 условиям",
+            id: 7,
+            technologies: "react, redux",
+            linkDemo: "https://table-i2f8a99ix-sklevzhic.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/table"
         },
         {
             name: "Hexal",
@@ -76,24 +114,8 @@ const initialState: PortfolioState = {
             linkDemo: "https://sklevzhic.github.io/neutronmail/",
             linkCode: "https://github.com/sklevzhic/neutronmail/tree/gh-pages"
         },
-        {
-            name: "Sort Table",
-            image: ImageTable,
-            description: "Сортировка таблицы по 3 условиям",
-            id: 7,
-            technologies: "react, redux",
-            linkDemo: "https://table-i2f8a99ix-sklevzhic.vercel.app/",
-            linkCode: "https://github.com/sklevzhic/table"
-        },
-        {
-            name: "Tech",
-            image: ImageTech,
-            description: "Приложение для учета техники",
-            id: 8,
-            technologies: "react, redux, material",
-            linkDemo: "https://sklevzhic.github.io/tech",
-            linkCode: "https://github.com/sklevzhic/tech/tree/master"
-        },
+
+
         {
             name: "Todo List",
             image: ImageTodoNext,
@@ -104,14 +126,15 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/todots"
         },
         {
-            name: "Weather App",
-            image: ImageWeather,
-            description: "тестовое задание (погода )",
-            id: 10,
-            technologies: "react, redux",
-            linkDemo: "",
-            linkCode: "https://github.com/sklevzhic/weather-app"
+            name: "Animation Piksel",
+            image: ImageAnimation,
+            description: "Учебный проект rss",
+            id: 14,
+            technologies: "html, css, js",
+            linkDemo: "https://sklevzhic.github.io/animation-piksel/",
+            linkCode: "https://github.com/sklevzhic/animation-piksel/tree/gh-pages"
         },
+
         {
             name: "Design 1",
             image: ImageDes1,
@@ -130,15 +153,7 @@ const initialState: PortfolioState = {
             linkDemo: "",
             linkCode: ""
         },
-        {
-            name: "TodoList",
-            image: ImageTodo,
-            description: "В разработке",
-            id: 13,
-            technologies: "react, typescript, redux, tailwind, localstorage",
-            linkDemo: "/todo",
-            linkCode: ""
-        },
+
     ],
     activeProject: {} as IProject,
     technologies: ""

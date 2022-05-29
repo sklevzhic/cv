@@ -24,9 +24,6 @@ const TodoList: FC<TodoListProps> = ({title, items, idDesk}) => {
         if (items.length > prevItemslLength)
             heightDiv.current?.scrollTo({top: scrollHeight, behavior: 'smooth'})
     }, [items])
-    const handlerRemoveDesk = () => {
-        dispatch(removeDesk(idDesk))
-    }
 
     const deleteTodoItem = (id: number) => {
         dispatch(removeTodo({idDesk, id}))

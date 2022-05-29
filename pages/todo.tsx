@@ -62,9 +62,7 @@ const TodoPage: NextPage = () => {
         }
     }, [desks.length])
 
-    const addDesk = (title: string) => {
-        dispatch(setNewDesk(title))
-    }
+
 
     // function move() {
     //
@@ -177,11 +175,7 @@ const TodoPage: NextPage = () => {
                     {/*            </Droppable>;*/}
                     {/*        })*/}
                     {/*    }*/}
-                    {/*    <div className={"border m-2 p-1 bg-gray-100 min-w-[20em] h-full opacity-70 hover:opacity-100"}>*/}
-                    {/*        <div className={"flex justify-between border-b p-1"}>*/}
-                    {/*            <AddNewItem textBtn={"+ Add desk"} save={addDesk}/>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
+
                     {/*</div>*/}
 
             </DragDropContext>

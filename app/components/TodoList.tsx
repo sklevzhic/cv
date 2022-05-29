@@ -27,24 +27,16 @@ const TodoList: FC<TodoListProps> = ({title, items, idDesk}) => {
     const handlerRemoveDesk = () => {
         dispatch(removeDesk(idDesk))
     }
-    const addTodoItem = (text: string) => {
-        dispatch(setTodo({idDesk, text}))
-    }
+
     const deleteTodoItem = (id: number) => {
         dispatch(removeTodo({idDesk, id}))
     }
     return <div className={"border m-2 p-1 w-[16em] shrink-0 bg-gray-100"}>
-        <div className={"flex justify-between border-b p-1 items-center"}>
-            <div className={"basis-4/6 font-semibold overflow-hidden"}> {title}
 
-            </div>
-            {!!items.length && <div className={"basis-1.5/6 text-sm text-lime-700"}>({items.length} шт.)</div>}
-            <MdClose onClick={handlerRemoveDesk} className={"basis-0.5/6 opacity-40 hover:opacity-100"}/>
-        </div>
         <div ref={heightDiv} className={"text-left flex flex-col max-h-heightItemsInDesk overflow-auto "}>
             <DroppableList todos={items} key={idDesk} id={idDesk} name={title} />
         </div>
-        <AddNewItem save={addTodoItem} textBtn={"+ Add card"}/>
+
     </div>
 }
 

@@ -88,35 +88,9 @@ export const todoSlice = createSlice({
             }]
             localStorage.setItem("users", JSON.stringify(state.desks))
         },
-        moveItem: (state, action: PayloadAction<{
-            deskOld: number,
-            idItem: number,
-            deskNew: number,
-            position: number
-        }>) => {
-
-            let itemsInOldDesk = state.desks.find(desk => desk.id === action.payload.deskOld)
-            let activeItem = itemsInOldDesk?.todos.filter(item => item.id === action.payload.idItem)[0]
-            let itemsInNewDesk = state.desks.find(desk => desk.id === action.payload.deskOld)
-            let indexEl = itemsInNewDesk?.todos.findIndex(el => el.id === action.payload.position)
-
-            state.desks = state.desks.map(desk => {
-                if (desk.id === action.payload.deskNew) {
-                    return {
-                        ...desk,
-                        todos: activeItem ? [...desk.todos, activeItem] : desk.todos
-                    }
-                }
-                if (desk.id === action.payload.deskOld) {
-                    return {
-                        ...desk,
-                        todos: desk.todos.filter(item => item.id !== action.payload.idItem)
-                    }
-                }
-                return desk
-            })
-
-
+        moveItem: (state, action: PayloadAction<IDesk[]>) => {
+            state.desks = action.payload
+            localStorage.setItem("users", JSON.stringify(state.desks))
         }
 
     },

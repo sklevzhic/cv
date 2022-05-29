@@ -29,7 +29,7 @@ const initialState: PortfolioState = {
             description: "тестовое задание ()",
             id: 1,
             technologies: "react, redux, typescript, antd",
-            linkDemo: "",
+            linkDemo: "https://crypto-app-self-zeta.vercel.app/",
             linkCode: "https://github.com/sklevzhic/crypto-app"
         },
 
@@ -66,7 +66,7 @@ const initialState: PortfolioState = {
             description: "тестовое задание (погода )",
             id: 10,
             technologies: "react, redux",
-            linkDemo: "",
+            linkDemo: "https://weather-app-rho-inky.vercel.app/",
             linkCode: "https://github.com/sklevzhic/weather-app"
         },
         {

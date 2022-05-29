@@ -17,12 +17,16 @@ const AddNewItem: FC<AddNewItemProps> = ({textBtn, save}) => {
     let [text, setText] = useState<string>("")
     let [editable, setEditable] = useState<boolean>(false)
 
-    const handleTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)
+    const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => setText(e.target.value)
     const handlerSave = () => {
-        setEditable(false)
-        save(text)
-        setText("")
-        setEditable(true)
+        if (isEmpty(text)) {
+            setEditable(false)
+        } else {
+            setEditable(false)
+            save(text)
+            setText("")
+            setEditable(true)
+        }
     }
     const handleClickOutside = () => {
         if (isEmpty(text)) {

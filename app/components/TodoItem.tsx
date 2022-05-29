@@ -17,7 +17,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
     const [editable, setEditable] = useState(false)
     const [textInput, setTextInput] = useState(text)
 
-    const handlerTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handlerTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(e.target.value)
     }
 

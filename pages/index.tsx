@@ -40,7 +40,8 @@ let courses: any = [
             <ul>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
-                    <a href="https://www.youtube.com/c/UlbiTV"  rel="noreferrer" target={"_blank"}>Ulbi TV (React, Redux, Typescript,
+                    <a href="https://www.youtube.com/c/UlbiTV" rel="noreferrer" target={"_blank"}>Ulbi TV (React, Redux,
+                        Typescript,
                         Тестирование)</a></li>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
@@ -50,7 +51,8 @@ let courses: any = [
                 </li>
                 <li className={"relative pb-2"}><AiFillCrown className={"absolute -left-5 top-1.5"}
                                                              color={"#129f00"}/>
-                    <a href="https://www.youtube.com/c/ITKAMASUTRA" rel="noreferrer" target={"_blank"}>IT-KAMASUTRA </a> (React, Redux,
+                    <a href="https://www.youtube.com/c/ITKAMASUTRA" rel="noreferrer"
+                       target={"_blank"}>IT-KAMASUTRA </a> (React, Redux,
                     NextJS, Typescript)
                 </li>
                 <li>и др. (Непомнящий, Дударь, Минин, Stashchuk, Archakov, RED Group, Собеседования ...)</li>
@@ -95,7 +97,7 @@ const HomePage: FC = () => {
                                 </button>
                             </Link>
                             <a href={"#contacts"}
-                                className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Контакты
+                               className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Контакты
                             </a>
                         </div>
                     </div>
@@ -173,7 +175,7 @@ const HomePage: FC = () => {
                             изучения</p>
                     </div>
                     <div className="flex flex-wrap justify-evenly">
-                        {/*<div>Для чтения документации достаточно)</div>*/}
+
 
                     </div>
                 </div>
@@ -198,9 +200,13 @@ const HomePage: FC = () => {
                                 <div className={"flex items-center"}><Icon icon={SiGmail} color={"#b94444"}/>
                                     <a href="mailto:sklevzhic@gmail.com">sklevzhic@gmail.com</a></div>
                                 <div className={"flex justify-center  mt-4"}>
-                                    <a href={"https://t.me/sklevzhic"}  rel="noreferrer" target={"_blank"}><Icon icon={SiTelegram} color={"#3297dc"}/></a>
-                                    <a href={"viber://chat?number=+375291095895"}  rel="noreferrer" target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
-                                    <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}  rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp} color={"#6dde6f"}/></a>
+                                    <a href={"https://t.me/sklevzhic"} rel="noreferrer" target={"_blank"}><Icon
+                                        icon={SiTelegram} color={"#3297dc"}/></a>
+                                    <a href={"viber://chat?number=+375291095895"} rel="noreferrer"
+                                       target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
+                                    <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}
+                                       rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp}
+                                                                                color={"#6dde6f"}/></a>
                                 </div>
                             </div>
                         </div>

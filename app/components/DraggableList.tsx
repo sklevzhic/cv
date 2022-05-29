@@ -1,12 +1,14 @@
 import React, {FC, useEffect, useRef, useState} from "react"
 import {useDispatch} from "react-redux";
-import {initialDesks, removeDesk, removeTodo, setNewDesk, setTodo} from "../../store/slices/todoSlice";
+import {changeTitleDesk, initialDesks, removeDesk, removeTodo, setNewDesk, setTodo} from "../../store/slices/todoSlice";
 import {IDesk, ITodo} from "../models/ITodo";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import AddNewItem from "./AddNewItem";
 import {MdClose} from "react-icons/md";
 import TodoItem from "./TodoItem";
-import { usePrevious } from "../hooks/usePrevious";
+import {usePrevious} from "../hooks/usePrevious";
+import {useInput} from "../hooks/useInput";
+import {useClickOutside} from "../hooks/useClickOutside";
 
 interface DroppableListProps {
     id: number,
@@ -16,16 +18,13 @@ interface DroppableListProps {
 
 const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
     const dispatch = useDispatch()
-    const addTodoItem = (text: string) => {
-        dispatch(setTodo({id, text}))
-    }
+    let [editableTitle, setEditableTitle] = useState<boolean>(false)
+    const outsideRef = useRef(null)
+    useClickOutside(outsideRef, () => setEditableTitle(false))
+    const addTodoItem = (text: string) => dispatch(setTodo({id, text}))
+    const handlerRemoveDesk = () => dispatch(removeDesk(id))
 
-    const handlerRemoveDesk = () => {
-        dispatch(removeDesk(id))
-    }
-    const deleteTodoItem = (idTodo: number) => {
-        dispatch(removeTodo({idDesk: id, idTodo: idTodo}))
-    }
+    const deleteTodoItem = (idTodo: number) => dispatch(removeTodo({idDesk: id, idTodo: idTodo}))
 
     const heightDiv = useRef<HTMLDivElement | null>(null)
     const scrollHeight = heightDiv.current?.scrollHeight
@@ -36,6 +35,13 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
             heightDiv.current?.scrollTo({top: scrollHeight, behavior: 'smooth'})
     }, [items])
 
+    const saveTitle = () => {
+        setEditableTitle(false)
+        dispatch(changeTitleDesk({ idDesk: id, title: titleDesk.text }))
+    }
+    let titleDesk = useInput(name, saveTitle)
+
+
     return (
         <Droppable droppableId={"l-" + id}>
             {(provided) => (
@@ -44,14 +50,19 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                      ref={provided.innerRef}
                 >
                     <div className={"flex justify-between border-b p-1 items-center"}>
-                        <div className={"basis-4/6 font-semibold overflow-hidden"}> {name}
-
-                        </div>
+                        {editableTitle ? <input value={titleDesk.text} ref={outsideRef}
+                                className={"basis-4/6 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-lime-500"}
+                                {...titleDesk} type="text"/> :
+                            <div
+                                className={"basis-4/6 font-semibold overflow-hidden cursor-text "}
+                                onClick={() => setEditableTitle(true)}
+                            > {name} </div>}
                         {!!items.length &&
                             <div className={"basis-1.5/6 text-sm text-lime-700"}>({items.length} шт.)</div>}
-                        <MdClose onClick={handlerRemoveDesk} className={"basis-0.5/6 cursor-pointer opacity-40 hover:opacity-100"}/>
+                        <MdClose onClick={handlerRemoveDesk}
+                                 className={"basis-0.5/6 cursor-pointer opacity-40 hover:opacity-100"}/>
                     </div>
-                    <div ref={heightDiv}  className={"text-left flex flex-col max-h-heightItemsInDesk overflow-auto"}>
+                    <div ref={heightDiv} className={"text-left flex flex-col max-h-heightItemsInDesk overflow-auto"}>
                         <ul className='list'>
                             {items && items.map((item, index) => {
                                 // debugger

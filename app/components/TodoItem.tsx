@@ -8,7 +8,7 @@ interface TodoItemProps {
     text: string,
     deleteTodoItem: () => void,
     idDesk: number,
-    id: number
+    id: number,
 }
 
 const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
@@ -27,6 +27,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
     }
     if (editable) {
         return <InputText text={textInput}
+
                           btnText={"Сохранить"}
                           handlerText={handlerTextInput}
                           handlerSave={changeTitleTodo}
@@ -36,7 +37,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteTodoItem, idDesk, id}) => {
     }
 
 
-    return <div draggable={true}
+    return <div
                 className={"border h-auto  flex m-0.5 p-1 bg-white items-center " +
                     "justify-between cursor-pointer hover:bg-gray-100 rounded"}>
                 <div className={"basis-5/6 shrink-0 overflow-hidden flex flex-col pr-1"}>

@@ -20,14 +20,14 @@ const Input: FC<InputProps> = ({text, setText, type, close, save, btnAgree = "Sa
         if (e.keyCode === 27) close()
     }
 
-    if (type === IType.titleList) {
+    if ((type === IType.titleList) || (type === IType.updateItem)) {
         return <input
             ref={visibleInput}
             autoFocus={true}
             value={text}
             onChange={setText}
             onKeyUp={handleKeyUp}
-            className={cn("form-control block w-full px-3 py-1.5 text-base font-normal  text-gray-700 bg-white " +
+            className={cn("form-control block w-full text-base font-normal  text-gray-700 bg-white " +
                 "bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 " +
                 "focus:bg-white focus:border-lime-600 focus:outline-none")}
         />

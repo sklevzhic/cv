@@ -55,7 +55,7 @@ export const todoSlice = createSlice({
 
         },
         changeTitle: (state, action: PayloadAction<{ idDesk: number, id: number, title: string }>) => {
-            state.desks = state.desks.map(desk => {
+            let arr = state.desks.map(desk => {
                 if (action.payload.idDesk === desk.id) {
                     return {
                         ...desk,
@@ -74,6 +74,7 @@ export const todoSlice = createSlice({
                     return desk
                 }
             })
+            state.desks = arr
             localStorage.setItem("users", JSON.stringify(state.desks))
         },
         changeTitleDesk: (state, action: PayloadAction<{ idDesk: number, title: string }>) => {

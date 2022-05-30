@@ -1,1 +1,1 @@
-export enum IType {"titleList", "newList", "newItem"}
+export enum IType {"titleList", "newList", "newItem", updateItem}

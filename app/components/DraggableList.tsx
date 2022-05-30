@@ -1,16 +1,16 @@
-import React, {FC, useEffect, useRef, useState} from "react"
+import React, {FC, useEffect, useRef} from "react"
 import {useDispatch} from "react-redux";
-import {changeTitleDesk, removeDesk, removeTodo, setTodo} from "../../store/slices/todoSlice";
+import {changeTitle, changeTitleDesk, removeDesk, removeTodo, setTodo} from "../../store/slices/todoSlice";
 import {ITodo} from "../models/ITodo";
 import {Draggable, Droppable} from "react-beautiful-dnd";
-import AddNewItem from "./AddNewItem";
-import {MdClose} from "react-icons/md";
-import TodoItem from "./TodoItem";
+import {MdClose, MdEdit} from "react-icons/md";
 import {usePrevious} from "../hooks/usePrevious";
 import Text from "./Text";
 import Input from "./Input";
 import EditableText from "./EditableText";
 import {IType} from "../models/ITypeInput";
+import TodoItemNew from "./TodoItemNew";
+import TodoItem from "./TodoItem";
 
 interface DroppableListProps {
     id: number,
@@ -19,6 +19,7 @@ interface DroppableListProps {
 }
 
 const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
+
     const dispatch = useDispatch()
 
     const addTodoItem = (text: string) => dispatch(setTodo({id, text}))
@@ -36,7 +37,11 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
     }, [items])
 
     const saveTitle = (text: string) => {
-        dispatch(changeTitleDesk({ idDesk: id, title: text }))
+        dispatch(changeTitleDesk({idDesk: id, title: text}))
+    }
+
+    const changeTitleTodo = (title: string, idTodo: number) => {
+        dispatch(changeTitle({idDesk: id, id: idTodo, title: title}))
     }
 
     return (
@@ -48,7 +53,12 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                 >
                     <div className={"flex justify-between border-b p-1 items-center"}>
 
-                        <EditableText TextComponent={Text} EditComponent={Input} type={IType.titleList} save={saveTitle}  value={name} textButton={name} btnAgree={"Добавить"}/>
+                        <div className={"basis-4/6 shrink-0 overflow-hidden"}>
+                            <EditableText TextComponent={Text} EditComponent={Input} type={IType.titleList}
+                                          save={saveTitle}
+                                          value={name} textButton={name} btnAgree={"Добавить"}/>
+                        </div>
+
                         {!!items.length &&
                             <div className={"basis-1.5/6 text-sm text-lime-700"}>({items.length} шт.)</div>}
                         <MdClose onClick={handlerRemoveDesk}
@@ -58,10 +68,8 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                         <ul className='list'>
                             {items && items.map((item, index) => {
                                 // debugger
-                                return <div
-                                    className='list__item'
-                                    key={item.id}
-                                >
+                                return <div key={item.id}>
+
                                     <Draggable
                                         draggableId={"i-" + item.id}
                                         index={index}
@@ -73,8 +81,11 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                                                 {...provided.dragHandleProps}
                                                 ref={provided.innerRef}
                                             >
-                                                <TodoItem idDesk={id} text={item.title} id={item.id}
-                                                          deleteTodoItem={() => deleteTodoItem(item.id)}/>
+                                                <TodoItem
+                                                    text={item.title}
+                                                    changeTitleTodo={(t) => changeTitleTodo(t, item.id)}
+                                                    deleteItem={() => deleteTodoItem(item.id)}
+                                                />
                                             </div>
                                         )}
                                     </Draggable>
@@ -84,7 +95,8 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
 
                         </ul>
                     </div>
-                    <AddNewItem save={addTodoItem} textBtn={"+ Add card"}/>
+                    <EditableText TextComponent={Text} EditComponent={Input} value={""} type={IType.newItem}
+                                  textButton={"+ Add card"} save={addTodoItem} btnAgree={"Добавить"}/>
                 </div>
             )}
         </Droppable>

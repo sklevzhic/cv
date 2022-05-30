@@ -1,14 +1,14 @@
 import React, {FC, useEffect, useRef, useState} from "react"
 import {useDispatch} from "react-redux";
-import {initialDesks, moveItem, removeDesk, setNewDesk} from "../../store/slices/todoSlice";
-import { IDesk } from "../models/ITodo";
+import {initialDesks, moveItem, setNewDesk} from "../../store/slices/todoSlice";
+import {IDesk} from "../models/ITodo";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
-import AddNewItem from "./AddNewItem";
 import DroppableList from "./DraggableList";
-import { usePrevious } from "../hooks/usePrevious";
+import {usePrevious} from "../hooks/usePrevious";
 import EditableText from "./EditableText";
 import Text from "./Text";
 import Input from "./Input";
+import {IType} from "../models/ITypeInput";
 
 interface DesksProps {
     desks: IDesk[]
@@ -58,7 +58,7 @@ const Desks: FC<DesksProps> = ({desks}) => {
         setGroups(groups);
     }
     const handlerDrag = (result: any) => {
-        let { destination, source, type } = result;
+        let {destination, source, type} = result;
         if (!destination) return;
         if (destination.droppableId === source.droppableId && destination.index === source.index) return;
 
@@ -66,7 +66,7 @@ const Desks: FC<DesksProps> = ({desks}) => {
             const sourceIndex = source.index;
             const targetIndex = destination.index;
             const workValue = desks.slice();
-            const [deletedItem, ] = workValue.splice(sourceIndex, 1);
+            const [deletedItem,] = workValue.splice(sourceIndex, 1);
             workValue.splice(targetIndex, 0, deletedItem);
             dispatch(moveItem(workValue));
             return;
@@ -80,7 +80,7 @@ const Desks: FC<DesksProps> = ({desks}) => {
 
         const targetItems = source.droppableId !== destination.droppableId ? desks[targetDroppableIndex].todos.slice() : sourceItems;
 
-        const [deletedItem, ] = sourceItems.splice(source.index, 1);
+        const [deletedItem,] = sourceItems.splice(source.index, 1);
         targetItems.splice(destination.index, 0, deletedItem);
 
         const workValue = desks.slice();
@@ -94,9 +94,10 @@ const Desks: FC<DesksProps> = ({desks}) => {
         };
         dispatch(moveItem(workValue));
     }
+
     return (
-        <DragDropContext onDragEnd={handlerDrag} >
-            <Droppable droppableId='ROOT'  type='group' direction={"horizontal"}>
+        <DragDropContext onDragEnd={handlerDrag}>
+            <Droppable droppableId='ROOT' type='group' direction={"horizontal"}>
                 {(provided) => (
                     <div className={"max-h-noScrollFooter min-h-heightItemsInDesk overflow-auto"} ref={desksRef}>
                         <div
@@ -125,8 +126,10 @@ const Desks: FC<DesksProps> = ({desks}) => {
                                     )}
                                 </Draggable>
                             ))}
-                            <div className={"border m-2 p-1 bg-gray-100 min-w-[20em] h-full opacity-70 hover:opacity-100"}>
-                                <EditableText TextComponent={Text} EditComponent={Input} value={""} textButton={"+ Add Desk"} save={addDesk} btnAgree={"Добавить"}/>
+                            <div
+                                className={"border m-2 p-1 bg-gray-100 min-w-[20em] h-full opacity-70 hover:opacity-100"}>
+                                <EditableText TextComponent={Text} EditComponent={Input} value={""} type={IType.newList}
+                                              textButton={"+ Add Desk"} save={addDesk} btnAgree={"Добавить"}/>
                             </div>
                             {provided.placeholder}
                         </div>

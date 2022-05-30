@@ -1,14 +1,16 @@
 import React, {FC, useEffect, useRef, useState} from "react"
 import {useDispatch} from "react-redux";
-import {changeTitleDesk, initialDesks, removeDesk, removeTodo, setNewDesk, setTodo} from "../../store/slices/todoSlice";
-import {IDesk, ITodo} from "../models/ITodo";
-import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import {changeTitleDesk, removeDesk, removeTodo, setTodo} from "../../store/slices/todoSlice";
+import {ITodo} from "../models/ITodo";
+import {Draggable, Droppable} from "react-beautiful-dnd";
 import AddNewItem from "./AddNewItem";
 import {MdClose} from "react-icons/md";
 import TodoItem from "./TodoItem";
 import {usePrevious} from "../hooks/usePrevious";
-import {useInput} from "../hooks/useInput";
-import {useClickOutside} from "../hooks/useClickOutside";
+import Text from "./Text";
+import Input from "./Input";
+import EditableText from "./EditableText";
+import {IType} from "../models/ITypeInput";
 
 interface DroppableListProps {
     id: number,
@@ -18,9 +20,7 @@ interface DroppableListProps {
 
 const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
     const dispatch = useDispatch()
-    let [editableTitle, setEditableTitle] = useState<boolean>(false)
-    const outsideRef = useRef(null)
-    useClickOutside(outsideRef, () => setEditableTitle(false))
+
     const addTodoItem = (text: string) => dispatch(setTodo({id, text}))
     const handlerRemoveDesk = () => dispatch(removeDesk(id))
 
@@ -35,12 +35,9 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
             heightDiv.current?.scrollTo({top: scrollHeight, behavior: 'smooth'})
     }, [items])
 
-    const saveTitle = () => {
-        setEditableTitle(false)
-        dispatch(changeTitleDesk({ idDesk: id, title: titleDesk.text }))
+    const saveTitle = (text: string) => {
+        dispatch(changeTitleDesk({ idDesk: id, title: text }))
     }
-    let titleDesk = useInput(name, saveTitle)
-
 
     return (
         <Droppable droppableId={"l-" + id}>
@@ -50,13 +47,8 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                      ref={provided.innerRef}
                 >
                     <div className={"flex justify-between border-b p-1 items-center"}>
-                        {editableTitle ? <input value={titleDesk.text} ref={outsideRef}
-                                className={"basis-4/6 bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-lime-500"}
-                                {...titleDesk} type="text"/> :
-                            <div
-                                className={"basis-4/6 font-semibold overflow-hidden cursor-text "}
-                                onClick={() => setEditableTitle(true)}
-                            > {name} </div>}
+
+                        <EditableText TextComponent={Text} EditComponent={Input} type={IType.titleList} save={saveTitle}  value={name} textButton={name} btnAgree={"Добавить"}/>
                         {!!items.length &&
                             <div className={"basis-1.5/6 text-sm text-lime-700"}>({items.length} шт.)</div>}
                         <MdClose onClick={handlerRemoveDesk}

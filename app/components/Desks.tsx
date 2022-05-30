@@ -6,6 +6,9 @@ import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import AddNewItem from "./AddNewItem";
 import DroppableList from "./DraggableList";
 import { usePrevious } from "../hooks/usePrevious";
+import EditableText from "./EditableText";
+import Text from "./Text";
+import Input from "./Input";
 
 interface DesksProps {
     desks: IDesk[]
@@ -54,7 +57,6 @@ const Desks: FC<DesksProps> = ({desks}) => {
 
         setGroups(groups);
     }
-
     const handlerDrag = (result: any) => {
         let { destination, source, type } = result;
         if (!destination) return;
@@ -92,7 +94,6 @@ const Desks: FC<DesksProps> = ({desks}) => {
         };
         dispatch(moveItem(workValue));
     }
-
     return (
         <DragDropContext onDragEnd={handlerDrag} >
             <Droppable droppableId='ROOT'  type='group' direction={"horizontal"}>
@@ -125,9 +126,7 @@ const Desks: FC<DesksProps> = ({desks}) => {
                                 </Draggable>
                             ))}
                             <div className={"border m-2 p-1 bg-gray-100 min-w-[20em] h-full opacity-70 hover:opacity-100"}>
-                                <div className={"flex justify-between border-b p-1"}>
-                                    <AddNewItem textBtn={"+ Add desk"} save={addDesk}/>
-                                </div>
+                                <EditableText TextComponent={Text} EditComponent={Input} value={""} textButton={"+ Add Desk"} save={addDesk} btnAgree={"Добавить"}/>
                             </div>
                             {provided.placeholder}
                         </div>

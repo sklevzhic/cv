@@ -1,10 +1,5 @@
 import React, {FC, useRef, useState} from "react";
-import {CgClose} from "react-icons/cg"
-import cn from "classnames"
-import {useClickOutside} from "../hooks/useClickOutside";
 import {isEmpty} from "../utils/isEmpty";
-import {useDispatch} from "react-redux";
-import {setTodo} from "../../store/slices/todoSlice";
 import InputText from "./InputText";
 
 

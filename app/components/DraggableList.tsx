@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useRef} from "react"
 import {useDispatch} from "react-redux";
-import {changeTitle, changeTitleDesk, removeDesk, removeTodo, setTodo} from "../../store/slices/todoSlice";
-import {ITodo} from "../models/ITodo";
+import {changeTitle, changeTitleDesk, removeDesk, removeTodo, setMark, setTodo} from "../../store/slices/todoSlice";
+import {ITodo, Marks} from "../models/ITodo";
 import {Draggable, Droppable} from "react-beautiful-dnd";
 import {MdClose, MdEdit} from "react-icons/md";
 import {usePrevious} from "../hooks/usePrevious";
@@ -25,7 +25,12 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
     const addTodoItem = (text: string) => dispatch(setTodo({id, text}))
     const handlerRemoveDesk = () => dispatch(removeDesk(id))
 
-    const deleteTodoItem = (idTodo: number) => dispatch(removeTodo({idDesk: id, idTodo: idTodo}))
+    const deleteTodoItem = (idTodo: number) => {
+        dispatch(removeTodo({idDesk: id, idTodo: idTodo}))
+    }
+    const addMark = (mark: Marks, idItem: number) => {
+        dispatch(setMark({idDesk: id, idItem, mark}))
+    }
 
     const heightDiv = useRef<HTMLDivElement | null>(null)
     const scrollHeight = heightDiv.current?.scrollHeight
@@ -64,7 +69,7 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                         <MdClose onClick={handlerRemoveDesk}
                                  className={"basis-0.5/6 cursor-pointer opacity-40 hover:opacity-100"}/>
                     </div>
-                    <div ref={heightDiv} className={"text-left flex flex-col max-h-heightItemsInDesk overflow-auto"}>
+                    <div ref={heightDiv} className={"test text-left flex flex-col relative max-h-heightItemsInDesk"}>
                         <ul className='list'>
                             {items && items.map((item, index) => {
                                 // debugger
@@ -83,8 +88,10 @@ const DroppableList: FC<DroppableListProps> = ({id, items, name}) => {
                                             >
                                                 <TodoItem
                                                     text={item.title}
+                                                    marks={item.marks}
                                                     changeTitleTodo={(t) => changeTitleTodo(t, item.id)}
                                                     deleteItem={() => deleteTodoItem(item.id)}
+                                                    addMark={(m) => addMark(m, item.id)}
                                                 />
                                             </div>
                                         )}

@@ -1,5 +1,4 @@
 import React, {FC} from "react";
-import TechnologyItem from "./TechnologyItem";
 import {IProject} from "../models/IProject";
 import CardPortfolio from "./CardPortfolio";
 

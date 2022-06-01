@@ -1,13 +1,11 @@
 import React, {FC, Fragment} from "react";
 import {MdClose, MdOutlineMoreVert} from "react-icons/md"
-import {GrTextAlignFull} from "react-icons/gr"
 import EditableText from "./EditableText";
 import Text from "./Text";
 import Input from "./Input";
 import {IType} from "../models/ITypeInput";
-import {Menu, Popover, Transition} from "@headlessui/react";
+import {Popover, Transition} from "@headlessui/react";
 import {Marks} from "../models/ITodo";
-import {setMark} from "../../store/slices/todoSlice";
 import {useDispatch} from "react-redux";
 
 interface TodoItemProps {

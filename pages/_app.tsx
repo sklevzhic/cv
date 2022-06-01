@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           src="https://www.googletagmanager.com/gtag/js?id=G-DZB5CFBQW4"
       />
 
-      <Script strategy="lazyOnload">
+      <Script id={"ganalytics"} strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

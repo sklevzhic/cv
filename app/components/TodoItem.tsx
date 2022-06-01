@@ -22,7 +22,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteItem, changeTitleTodo, addMark
     const dispatch = useDispatch()
     const changeTitle = (text: string) => changeTitleTodo(text)
 
-    function isSelectMark(mark: Marks | string) {
+    function isSelectMark(mark: Marks) {
         if (marks?.includes(mark)) {
             return true
         }
@@ -35,7 +35,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteItem, changeTitleTodo, addMark
         <div className={"basis-5.5/6 overflow-hidden flex flex-col pr-1"}>
             <div className={"flex flex-row flex-wrap"}>
             {
-                marks && marks.map(mark => {
+                marks && marks.map((mark ) => {
                     // @ts-ignore
                     return <div key={mark} className={Marks[mark] + " rounded w-5 mr-1 h-1 mb-0.5"}></div>
                 })
@@ -84,7 +84,7 @@ const TodoItem: FC<TodoItemProps> = ({text, deleteItem, changeTitleTodo, addMark
                                             </div>
                                             <div className={"flex flex-row flex-wrap"}>
                                                 {
-                                                    Object.keys(Marks).map((key) => {
+                                                    (Object.keys(Marks) as Marks[]).map((key) => {
                                                         let style = (isSelectMark(key)) ? " border-4 border-gray-400 " : " border-gray-400 "
                                                         // @ts-ignore
                                                         let classN = "shrink-0 " + Marks[key] + style + " rounded w-5 mr-1 h-4 mb-1"

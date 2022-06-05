@@ -202,7 +202,7 @@ const HomePage: FC = () => {
                                 <div className={"flex justify-center  mt-4"}>
                                     <a href={"https://t.me/sklevzhic"} rel="noreferrer" target={"_blank"}><Icon
                                         icon={SiTelegram} color={"#3297dc"}/></a>
-                                    <a href={"viber://chat?number=+375291095895"} rel="noreferrer"
+                                    <a href={"viber://auth?number=+375291095895"} rel="noreferrer"
                                        target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
                                     <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}
                                        rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp}

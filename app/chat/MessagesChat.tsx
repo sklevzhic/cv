@@ -1,59 +1,68 @@
 import React, {useEffect, useState} from 'react'
-import {setActiveChatId} from "../../store/slices/auth/authSlice";
-import {useDispatch} from "react-redux";
+import {User} from "firebase/auth";
+import {addDoc, collection, limit, orderBy, query} from 'firebase/firestore';
+import {firestore} from "../../firebaseconfig";
+import {useCollectionData} from "react-firebase-hooks/firestore";
 import {RiCloseFill} from "react-icons/ri"
-import {useRouter} from "next/router";
-interface MessagesChatProps {
+import cn from "classnames"
 
+
+interface MessagesChatProps {
+    user: User | null | undefined,
+    activeChat: string,
+    handleActiveChat: (v: string) => void
 }
 
-export const MessagesChat: React.FC<MessagesChatProps> = () => {
-    const dispatch = useDispatch()
+export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, handleActiveChat}) => {
+
+    const recipesCollectionRef = collection(firestore, `chats/${activeChat}/messages`)
+    let [messages, loading, error, snapshot] = useCollectionData(query(recipesCollectionRef, orderBy("timestamp", "asc")))
+
+    useEffect(() => {
+        return () => handleActiveChat("")
+    }, [])
+
 
     const [text, setText] = useState<string>("")
-    const sendMessage = () => {
+    const sendMessage = async () => {
+        let data = {
+            displayName: user?.displayName,
+            photoUrl: user?.photoURL,
+            timestamp: Date.now(),
+            sender: user?.email,
+            text,
+        }
+        addDoc(recipesCollectionRef, data)
         setText("")
     }
-
+    const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setText(e.currentTarget.value)
+    }
     return <div>
         <div className={"flex justify-between items-center border-b p-2"}>
             <div className="flex items-center space-x-4">
-                <img className="w-12 h-12 rounded-full"
-                     src="http://localhost:3000/_next/static/media/klevzhits.29d406a8.jpg" alt=""/>
                 <div className="space-y-0 font-medium">
-                    <div>Jese Leos</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Joined in August 2014</div>
+                    <div>mail another</div>
                 </div>
             </div>
-            <button type="button" onClick={() => dispatch(setActiveChatId(""))}
+            <button type="button" onClick={() => handleActiveChat("")}
                     className="p-2 hover:bg-lime-100 focus:bg-lime-100 rounded-full w-8 h-8 text-l">
                 <RiCloseFill/>
             </button>
         </div>
         <div className={"p-2"}>
             <div className={"flex flex-col"}>
-                <div className={"flex justify-end"}>
-                    <span className={"bg-lime-200 p-1"}>Привет <button>:</button></span>
-                </div>
-                <div className={"flex justify-start"}>
-                    <span className={"bg-lime-200 p-1"}>Привет <button>:</button></span>
-                </div>
-                <div className={"flex justify-end"}>
-                    <span className={"bg-lime-200 p-1"}>Как дела <button>:</button></span>
-                </div>
-                <div className={"flex justify-start"}>
-                    <span className={"bg-lime-200 p-1"}>Хорошо, ты как <button>:</button></span>
-                </div>
-                <div className={"flex justify-end"}>
-                    <span className={"bg-lime-200 p-1"}>Отлично <button>:</button></span>
-                </div>
-                <div className={"flex justify-start"}>
-                    <span className={"bg-lime-200 p-1"}>Лайк. <button>:</button></span>
-                </div>
+                {
+                    messages && messages.map(message => {
+                        return <div key={message.timestamp} className={cn("flex", user?.email === message.sender ? "justify-end" : "justify-start" )}>
+                            <span className={"bg-lime-200 p-1"}>{message.text} <button>:</button></span>
+                        </div>
+                    })
+                }
             </div>
         </div>
         <div className={"flex"}>
-            <input type="text" id="large-input" value={text} onChange={(e) => setText(e.currentTarget.value)}
+            <input type="text" id="large-input" value={text} onChange={handleTextInput}
                    className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"/>
             <button onClick={sendMessage}>send</button>
         </div>

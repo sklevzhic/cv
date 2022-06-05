@@ -1,15 +1,15 @@
 import React from 'react'
-import {signIn} from "../../store/slices/auth/actionCreators";
-import {useDispatch} from "react-redux";
-import { AppDispatch } from '../../store';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebaseconfig';
 
 interface LoginChatProps {
 
 }
 
 export const LoginChat: React.FC<LoginChatProps> = () => {
-    const dispatch = useDispatch<AppDispatch>()
-    const login = () => dispatch(signIn())
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
+
+    const login = () => signInWithGoogle()
 
     return (
         <div className={"max-w-7xl mx-auto  flex border border-b-neutral-400"}>

@@ -1,42 +1,43 @@
 import {NextPage} from "next";
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import {UserInfoChat} from "../app/chat/UserInfoChat";
 import {MessagesChat} from "../app/chat/MessagesChat";
+import {useAuthState} from 'react-firebase-hooks/auth';
+
+import {UsersChat} from "../app/chat/UsersChat";
+import {auth} from "../firebaseconfig";
 import {LoginChat} from "../app/chat/LoginChat";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../store";
-import {checkAuth} from "../store/slices/auth/actionCreators";
-import { UsersChat } from "../app/chat/UsersChat";
 
 const ChatPage: NextPage = () => {
-    const dispatch = useDispatch<AppDispatch>()
-    useEffect(() => {
-        dispatch(checkAuth())
-    }, [])
+    const [user, loading, error] = useAuthState(auth);
+    let [activeChat, setActiveChatId] = useState<string>("")
 
-    let { user, loading } = useSelector((state: RootState) => state.auth)
+    if (!(user || loading)) return <LoginChat/>
 
-    if (loading) return <>Spinner</>
-    if (!user) return <LoginChat />
+    const handleActiveChat = (id: string) => {
+        setActiveChatId(id)
+    }
+
 
     return (
         <div className={"max-w-7xl mx-auto flex flex border border-b-gray-200"}>
             {
-                true
+                user
                     ? <>
                         <div className={"flex flex-col basis-1/5"}>
-                            <UserInfoChat/>
-                            <UsersChat/>
+                            <UserInfoChat user={user}/>
+                            <UsersChat user={user} handleActiveChat={handleActiveChat}/>
                         </div>
                         <div className={"flex flex-col basis-4/5 border-l"}>
                             {
-                                true
-                                    ? <MessagesChat/>
+                                !!activeChat
+                                    ?
+                                    <MessagesChat activeChat={activeChat} user={user} handleActiveChat={handleActiveChat}/>
                                     : <>Выберите чат</>
                             }
                         </div>
                     </>
-                    : <>Load</>
+                    : <>Loading</>
 
             }
 

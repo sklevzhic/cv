@@ -38,8 +38,8 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
     const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setText(e.currentTarget.value)
     }
-    return <div>
-        <div className={"flex justify-between items-center border-b p-2"}>
+    return <div className={"flex h-full flex-col"}>
+        <div className={"flex basis-1/12 justify-between items-center border-b p-2"}>
             <div className="flex items-center space-x-4">
                 <div className="space-y-0 font-medium">
                     <div>mail another</div>
@@ -50,18 +50,21 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
                 <RiCloseFill/>
             </button>
         </div>
-        <div className={"p-2"}>
+        <div className={"p-2 basis-10/12"}>
             <div className={"flex flex-col"}>
                 {
                     messages && messages.map(message => {
-                        return <div key={message.timestamp} className={cn("flex", user?.email === message.sender ? "justify-end" : "justify-start" )}>
-                            <span className={"bg-lime-200 p-1"}>{message.text} <button>:</button></span>
+                        return <div key={message.timestamp}
+                                    className={cn("flex p-0.5 ", user?.email === message.sender ? "justify-end" : "justify-start")}>
+                            <div className={cn(" p-1 rounded-l max-w-[60%]",
+                                user?.email === message.sender ? "bg-gray-200" : "bg-lime-200"
+                            )}>{message.text}</div>
                         </div>
                     })
                 }
             </div>
         </div>
-        <div className={"flex"}>
+        <div className={"flex basis-1/12 p-2"}>
             <input type="text" id="large-input" value={text} onChange={handleTextInput}
                    className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"/>
             <button onClick={sendMessage}>send</button>

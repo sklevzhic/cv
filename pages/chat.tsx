@@ -6,13 +6,13 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 
 import {UsersChat} from "../app/chat/UsersChat";
 import {auth} from "../firebaseconfig";
-import {LoginChat} from "../app/chat/LoginChat";
+import {AuthChat} from "../app/chat/AuthChat";
 
 const ChatPage: NextPage = () => {
     const [user, loading, error] = useAuthState(auth);
     let [activeChat, setActiveChatId] = useState<string>("")
 
-    if (!(user || loading)) return <LoginChat/>
+    if (!(user || loading)) return <AuthChat/>
 
     const handleActiveChat = (id: string) => {
         setActiveChatId(id)
@@ -20,7 +20,7 @@ const ChatPage: NextPage = () => {
 
 
     return (
-        <div className={"max-w-7xl mx-auto flex flex border border-b-gray-200"}>
+        <div className={"max-w-7xl min-h-[600px] mx-auto flex flex border border-b-gray-200"}>
             {
                 user
                     ? <>

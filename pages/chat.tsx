@@ -41,12 +41,12 @@ const ChatPage: NextPage = () => {
                             <UserInfoChat user={user}/>
                             <UsersChat users={filteredChatUsers} user={user} handleActiveChat={handleActiveChat}/>
                         </div>
-                        <div className={"flex flex-col basis-4/5 border-l"}>
+                        <div className={"flex flex-col bg-gradient-to-br from-lime-100 to-green-200 basis-4/5 border-l"}>
                             {
                                 !!activeChat
                                     ?
                                     <MessagesChat activeChat={activeChat} user={user} handleActiveChat={handleActiveChat}/>
-                                    : <>Выберите чат</>
+                                    : <div className={"w-full"}>Выберите чат</div>
                             }
                         </div>
                     </>

@@ -20,7 +20,7 @@ const MainLayout: FC<LayoutProps> = ({children}) => {
 
     return (
         <div className={"md:contain md:mx-auto bg-white flex flex-col sticky top-0 z-50 min-h-screen"}>
-            <Header/>
+            {/*<Header/>*/}
             <main className="p-10 grow">
                 {children}
             </main>

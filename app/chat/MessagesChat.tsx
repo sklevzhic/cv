@@ -4,8 +4,10 @@ import {addDoc, collection, limit, orderBy, query} from 'firebase/firestore';
 import {firestore} from "../../firebaseconfig";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {RiCloseFill} from "react-icons/ri"
+import {MdSend} from "react-icons/md"
 import cn from "classnames"
 import { IChat } from '../models/IChat';
+import { getTime } from '../utils/getTime';
 
 
 interface MessagesChatProps {
@@ -47,16 +49,16 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
         function getTriangle() {
             return <span
                 className={
-                    cn("triangleMessage", user?.email === message.sender ? "triangleMessageSender -right-[8px]" : " -left-[8px]")
+                    cn("triangleMessage", user?.email === message.sender ? "triangleMessageSender -right-[6px]" : " -left-[6px]")
                 }></span>
         }
 
         return message && <div key={message.timestamp}
-                    className={cn("flex px-12 rounded-l", user?.email === message.sender ? "justify-end" : " ")}>
-            <div className={cn("flex relative p-1 max-w-[60%] pr-10 pb-2",
-                user?.email === message.sender ? "bg-gray-200" : "bg-lime-200")}>
+                    className={cn("flex px-12 m-0.5", user?.email === message.sender ? "justify-end" : " ")}>
+            <div className={cn("flex relative p-1 rounded max-w-[60%] pr-10 pb-2",
+                user?.email === message.sender ? "bg-gray-100" : "bg-lime-100")}>
                 <div>{message.text}
-                    <span className={cn("absolute bottom-0 right-0 text-xs")}>15:15</span>
+                    <span className={cn("absolute bottom-1 right-1 text-gray-400 text-xs")}>{getTime(message.timestamp)}</span>
                     { messages &&  (i === messages.length - 1) ? getTriangle() : messages && (messages[i].sender === messages[i+1].sender) ? null : getTriangle()}
                 </div>
 
@@ -71,7 +73,7 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
         setText(e.currentTarget.value)
     }
     return <div className={"flex h-full flex-col"}>
-        <div className={"flex basis-1/12 shrink-0 justify-between items-center border-b p-2"}>
+        <div className={"flex basis-1/12 shrink-0 justify-between bg-gray-50 items-center border-b p-2"}>
             <div className="flex items-center space-x-4">
                 <div className="space-y-0 font-medium">
                     <div>{activeChat.title}</div>
@@ -87,10 +89,11 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
                 { messagesItems }
             </div>
         </div>
-        <div className={"flex  shrink-0 basis-1/12 border-t p-2"}>
+        <div className={"flex  shrink-0 basis-1/12 bg-gray-50 border-t p-2"}>
             <input type="text" id="large-input" value={text} onChange={handleTextInput}
-                   className="block w-full text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500"/>
-            <button onClick={sendMessage}>send</button>
+                   className="block w-full text-gray-900 border border-gray-300 p-1  rounded-lg bg-white sm:text-md focus:ring-blue-500 focus:border-blue-500"/>
+
+            <button className={"bg-lime-300 p-2 rounded-full"} onClick={sendMessage}><MdSend /></button>
         </div>
     </div>;
 };

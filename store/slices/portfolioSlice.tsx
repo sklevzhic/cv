@@ -13,6 +13,7 @@ import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
 import ImageAnimation from "../../app/assets/projects/animation.png";
+import ImageChat from "../../app/assets/projects/chat.jpg";
 import {IProject} from "../../app/models/IProject";
 
 export interface PortfolioState {
@@ -61,6 +62,15 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/calendar"
         },
         {
+            name: "Chat",
+            image: ImageChat,
+            description: "Авторизация. Добавление чатов. Отправление сообщений. Чат создан с помощью react-firebase-hooks",
+            id: 16,
+            technologies: "react, firebase",
+            linkDemo: "/chat",
+            linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/chat.tsx"
+        },
+        {
             name: "Weather App",
             image: ImageWeather,
             description: "тестовое задание (погода )",
@@ -78,6 +88,7 @@ const initialState: PortfolioState = {
             linkDemo: "https://english-psi.vercel.app/tests/a0",
             linkCode: "https://github.com/sklevzhic/english"
         },
+
         {
             name: "Sort Table",
             image: ImageTable,
@@ -114,8 +125,6 @@ const initialState: PortfolioState = {
             linkDemo: "https://sklevzhic.github.io/neutronmail/",
             linkCode: "https://github.com/sklevzhic/neutronmail/tree/gh-pages"
         },
-
-
         {
             name: "Todo List",
             image: ImageTodoNext,

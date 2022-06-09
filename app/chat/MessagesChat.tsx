@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {User} from "firebase/auth";
 import {addDoc, collection, limit, orderBy, query} from 'firebase/firestore';
 import {firestore} from "../../firebaseconfig";
@@ -17,12 +17,20 @@ interface MessagesChatProps {
 }
 
 export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, handleActiveChat}) => {
-
+    let ref = useRef<HTMLDivElement | null>(null)
     const recipesCollectionRef = collection(firestore, `chats/${activeChat.id}/messages`)
     let [messages, loading, error] = useCollectionData(query(recipesCollectionRef, orderBy("timestamp", "asc")))
     useEffect(() => {
         return () => handleActiveChat(null)
     }, [])
+
+    useEffect(() => {
+        ref.current?.scrollTo({
+            top: ref.current?.scrollHeight,
+            behavior: 'smooth'
+        })
+    }, [messages])
+
 
     const [text, setText] = useState<string>("")
     const sendMessage = async () => {
@@ -36,9 +44,6 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
         addDoc(recipesCollectionRef, data)
         setText("")
     }
-
-
-
 
     const messagesItems = messages?.map((message,i) => {
 
@@ -80,12 +85,12 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
                 </div>
             </div>
             <button type="button" onClick={() => handleActiveChat(null)}
-                    className="p-2 hover:bg-lime-100 focus:bg-lime-100 rounded-full w-8 h-8 text-l">
+                    className="p-2 hover:bg-red-500 focus:bg-red-500 rounded-full w-8 h-8 text-l">
                 <RiCloseFill/>
             </button>
         </div>
-        <div className={"p-2 flex flex-col justify-end shrink-0 basis-10/12 overflow-hidden"}>
-            <div className={"flex flex-col h-full  overflow-auto"}>
+        <div className={"p-2 flex flex-col justify-end shrink-0 basis-10/12 overflow-hidden"} >
+            <div className={"flex flex-col h-full  overflow-auto "} ref={ref}>
                 { messagesItems }
             </div>
         </div>
@@ -93,7 +98,7 @@ export const MessagesChat: React.FC<MessagesChatProps> = ({user, activeChat, han
             <input type="text" id="large-input" value={text} onChange={handleTextInput}
                    className="block w-full text-gray-900 border border-gray-300 p-1  rounded-lg bg-white sm:text-md focus:ring-blue-500 focus:border-blue-500"/>
 
-            <button className={"bg-lime-300 p-2 rounded-full"} onClick={sendMessage}><MdSend /></button>
+            <button disabled={(!text) && true } className={"bg-lime-300 p-2 rounded-full"} onClick={sendMessage}><MdSend /></button>
         </div>
     </div>;
 };

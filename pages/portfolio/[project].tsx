@@ -16,7 +16,7 @@ const ProjectPage: FC = () => {
 
     useEffect(() => {
         // @ts-ignore
-        dispatch(getActiveProject( project ))
+        project && dispatch(getActiveProject( project ))
     }, [project])
 
     const activeProduct = useSelector((state: RootState) => state.portfolio.activeProject)

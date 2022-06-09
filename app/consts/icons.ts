@@ -7,7 +7,7 @@ import {
     SiReactrouter,
     SiRedux,
     SiTypescript,
-    SiDocker,
+    SiFirebase,
     SiFigma,
     SiAdobephotoshop,
     SiGit,
@@ -76,8 +76,11 @@ export const icons: any = {
         icon: SiAntdesign,
         color: "#137ef2"
     },
-
-
+    "firebase": {
+        label: "Firebase",
+        icon: SiFirebase,
+        color: "#f88507"
+    },
 
     "reactrouter": {
         label: "React Router",
@@ -85,21 +88,11 @@ export const icons: any = {
         color: "#d7650a"
     },
 
-    // "websocket": {
-    //     label: "Websockets",
-    //     icon: SiNextdotjs,
-    //     color: "#000000"
-    // },
     "restapi": {
         label: "REST API",
         icon: SiNextdotjs,
         color: "#000000"
     },
-    // "Docker": {
-    //     label: "Docker",
-    //     icon: SiDocker,
-    //     color: "#0db7ed"
-    // },
     "photoshop": {
         label: "Photoshop",
         icon: SiAdobephotoshop,

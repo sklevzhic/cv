@@ -26,8 +26,6 @@ const ChatPage: NextPage = () => {
         }
     })
 
-    let filteredChatUsers = chatUsers ? chatUsers.filter(el => el.users) : []
-
     const handleActiveChat = (chat: IChat | null) => setActiveChatId(chat)
 
     if (!(user || loading)) return <AuthChat/>
@@ -39,7 +37,7 @@ const ChatPage: NextPage = () => {
                     ? <>
                         <div className={"flex flex-col basis-1/5"}>
                             <UserInfoChat user={user}/>
-                            <UsersChat users={filteredChatUsers} user={user} handleActiveChat={handleActiveChat}/>
+                            <UsersChat users={chatUsers} user={user} handleActiveChat={handleActiveChat}/>
                         </div>
                         <div className={"flex flex-col bg-gradient-to-br from-lime-100 to-green-200 basis-4/5 border-l"}>
                             {

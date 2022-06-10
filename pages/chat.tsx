@@ -10,11 +10,11 @@ import {AuthChat} from "../app/chat/AuthChat";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {collection} from "firebase/firestore";
 import {getOtherEmail} from "../app/utils/getOtherEmail";
-import { IChat } from "../app/models/IChat";
+import {IChat} from "../app/models/IChat";
 
 const ChatPage: NextPage = () => {
     const [user, loading, error] = useAuthState(auth);
-    let [,,, snapshotChats] = useCollectionData(collection(firestore, "chats"))
+    let [, , , snapshotChats] = useCollectionData(collection(firestore, "chats"))
     let [activeChat, setActiveChatId] = useState<IChat | null>(null)
 
     let userEmail = user?.email as string

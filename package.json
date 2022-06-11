@@ -23,7 +23,8 @@
     "react-icons": "^4.3.1",
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^8.0.1",
-    "react-select": "^5.3.2"
+    "react-select": "^5.3.2",
+    "react-stay-scrolled": "^8.0.0"
   },
   "devDependencies": {
     "@types/node": "17.0.31",

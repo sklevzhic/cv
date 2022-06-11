@@ -6,8 +6,8 @@ import {auth} from '../../firebaseconfig';
 interface UserInfoChatProps {
     user: User | null | undefined
 }
+const UserInfoChat: React.FC<UserInfoChatProps> = ({user}) => {
 
-export const UserInfoChat: React.FC<UserInfoChatProps> = ({user}) => {
     function handleSignOut() {
         auth.signOut()
     }
@@ -33,3 +33,4 @@ export const UserInfoChat: React.FC<UserInfoChatProps> = ({user}) => {
 
     </div>;
 };
+export const MemoUserInfoChat = React.memo(UserInfoChat);

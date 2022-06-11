@@ -1,28 +1,21 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from '../../store';
-import {getOtherEmail} from '../utils/getOtherEmail';
-import {useCollectionData} from "react-firebase-hooks/firestore";
+import React from 'react'
 import {firestore} from "../../firebaseconfig";
 import {addDoc, collection, orderBy} from 'firebase/firestore';
 import {User} from "firebase/auth";
 import {IChat} from '../models/IChat';
 import {isEqualArrays} from "../utils/isEqualArrays";
-
-interface IUser {
-    id: string,
-    users: string[],
-}
+import cn from "classnames"
 
 interface UsersChatProps {
     handleActiveChat: (v: IChat) => void,
     users: any
     user: User | null | undefined,
+    activeChatId?: string
 }
 
-export const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, user}) => {
+const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, user, activeChatId}) => {
+    console.log("UsersChat");
     const chatsRef = collection(firestore, `chats`)
-
     users = users?.filter((el: any) => el.users.includes(user?.email))
 
     const isCreatedChat = (chatsData: any) => {
@@ -34,7 +27,9 @@ export const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, us
         if (email && email.trim() !== "") {
             let emails = [user?.email, email]
             if (!isCreatedChat(emails)) {
-                addDoc(chatsRef, {users: emails})
+                addDoc(chatsRef, {users: emails}).then(res => {
+                    console.log(res)
+                })
             } else {
                 let chat = {} as IChat
                 users.forEach((el: any) => {
@@ -52,14 +47,16 @@ export const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, us
     return <div className={"flex flex-col"}>
         <button onClick={handleAddChat}> add Chat</button>
         <div
-            className="w-full text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            className="w-full text-gray-900">
             {
                 users?.map((el: IChat) => {
-
-                    return <button key={el.id} type="button" onClick={() => handleActiveChat(el)}
-                                   className="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700
-                    focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500
-                    dark:focus:text-white">
+                    return <button key={el.id} type="button" disabled={el.id === activeChatId} onClick={() => handleActiveChat(el)}
+                                   className={cn("relative inline-flex items-center w-full px-4 py-2 text-sm" +
+                                       "border-y border-gray-200 " +
+                                       "hover:bg-lime-500 hover:text-white focus:z-10 " +
+                                       "focus:ring-2 focus:bg-lime-500 focus:text-white",
+                                       (el.id === activeChatId) && "bg-lime-500 text-white"
+                                   )}>
                         {el.title}
                     </button>
                 })
@@ -69,3 +66,5 @@ export const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, us
 
     </div>
 };
+
+export const MemoUsersChat = React.memo(UsersChat);

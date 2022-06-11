@@ -1,16 +1,18 @@
-import React, {useState} from 'react'
+import React, {memo, useState} from 'react'
 import {useSignInWithEmailAndPassword, useSignInWithGoogle} from 'react-firebase-hooks/auth';
 import {auth, firestore} from '../../firebaseconfig';
 import {MdSend} from "react-icons/md";
 import {addDoc, collection} from "firebase/firestore";
 import {User} from "firebase/auth";
+import {LoginChat} from "./LoginChat";
 
 interface NewMessageProps {
     user: User | null | undefined,
-    activeChatId: string
+    activeChatId: string,
 }
 
-export const NewMessage: React.FC<NewMessageProps> = ({user, activeChatId}) => {
+const NewMessage: React.FC<NewMessageProps> = ({user, activeChatId}) => {
+    console.log("NewMessage");
     const recipesCollectionRef = collection(firestore, `chats/${activeChatId}/messages`)
     const [text, setText] = useState<string>("")
     const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,21 +20,23 @@ export const NewMessage: React.FC<NewMessageProps> = ({user, activeChatId}) => {
     }
 
     const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        // if (e.keyCode === 13) handlerSave()
+        if (e.keyCode === 13) sendMessage()
         // if (e.keyCode === 27) handlerClose()
     }
 
     const sendMessage = () => {
-        let data = {
-            displayName: user?.displayName,
-            photoUrl: user?.photoURL,
-            timestamp: Date.now(),
-            sender: user?.email,
-            text,
-        }
+        if (text) {
+            let data = {
+                displayName: user?.displayName,
+                photoUrl: user?.photoURL,
+                timestamp: Date.now(),
+                sender: user?.email,
+                text,
+            }
 
-        addDoc(recipesCollectionRef, data)
-        setText("")
+            addDoc(recipesCollectionRef, data)
+            setText("")
+        }
     }
 
     return <>
@@ -42,3 +46,5 @@ export const NewMessage: React.FC<NewMessageProps> = ({user, activeChatId}) => {
         </button>
     </>
 };
+
+export const MemoNewMessage = memo(NewMessage)

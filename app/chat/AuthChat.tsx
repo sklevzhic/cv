@@ -7,7 +7,7 @@ interface AuthChatProps {
 }
 
 export const AuthChat: React.FC<AuthChatProps> = () => {
-
+    console.log("AuthChat");
     let [isRegister, setIsRegister] = useState<boolean>(false)
 
     return (

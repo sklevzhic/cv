@@ -13,19 +13,18 @@ import {getOtherEmail} from "../app/utils/getOtherEmail";
 import {IChat} from "../app/models/IChat";
 
 const ChatPage: NextPage = () => {
-    console.log("ChatPage");
     const [user, loading, error] = useAuthState(auth);
     let [,,, snapshotChats] = useCollectionData(collection(firestore, "chats"))
     let [activeChat, setActiveChatId] = useState<IChat | null>(null)
     let userEmail = user?.email as string
     let chatUsers = snapshotChats?.docs.map((doc) => {
-        return {
+        let title = doc.data().users.length === 2 ? getOtherEmail(doc.data().users, userEmail) : "Group"
+            return {
             id: doc.id,
-            title: doc.data().title || (doc.data().users.length === 2) ? getOtherEmail(doc.data().users, userEmail) : "Group",
+            title: doc.data().title || title,
             users: doc.data().users,
         }
     })
-
     const handleActiveChat = (chat: IChat | null) => setActiveChatId(chat)
 
     if (!(user || loading)) return <AuthChat/>

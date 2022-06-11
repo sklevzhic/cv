@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile} from 'react-firebase-hooks/auth';
 import { auth } from '../../firebaseconfig';
+import cn from "classnames";
 
 interface RegisterChatProps {
 }
@@ -28,7 +29,10 @@ export const RegisterChat: React.FC<RegisterChatProps> = () => {
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
                     email</label>
                 <input type="email" id="email" value={userName} onChange={(e) => setUserName(e.target.value)}
-                       className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       className={cn("border text-gray-900 text-sm rounded-lg " +
+                           "focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+                           error ? "border-red-300" : "border-gray-300"
+                       )}
                        placeholder="user@gmail.com" required />
             </div>
 
@@ -37,15 +41,19 @@ export const RegisterChat: React.FC<RegisterChatProps> = () => {
                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your
                     password</label>
                 <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                       className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       className={cn("border text-gray-900 text-sm rounded-lg " +
+                           "focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5",
+                           error ? "border-red-300" : "border-gray-300"
+                       )}
                        required />
             </div>
 
             <div className={"text-center"}>
                 <button type="submit"
-                        className="text-white text-center bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit
+                        className="text-white text-center bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{!loading ? "Submit" : "Loading" }
                 </button>
             </div>
+            {error && <div className={"text-red-600"}> {error.message} </div>}
         </form>
         <div className={"text-center "}>
             <p className={"text-sm my-4"}>Or Sign Up Using</p>

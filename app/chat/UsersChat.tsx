@@ -14,10 +14,8 @@ interface UsersChatProps {
 }
 
 const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, user, activeChatId}) => {
-    console.log("UsersChat");
     const chatsRef = collection(firestore, `chats`)
-    users = users?.filter((el: any) => el.users.includes(user?.email))
-
+    users = users?.filter((el: any) => (el.users.includes(user?.email) || el.title === "Общий чат"))
     const isCreatedChat = (chatsData: any) => {
         return users.filter((el: any) => isEqualArrays(el.users, chatsData)).length
     }
@@ -48,6 +46,8 @@ const UsersChat: React.FC<UsersChatProps> = ({handleActiveChat, users, user, act
         <button onClick={handleAddChat}> add Chat</button>
         <div
             className="w-full text-gray-900">
+
+            {/*eVKjGCHuTn36ru9r85zO*/}
             {
                 users?.map((el: IChat) => {
                     return <button key={el.id} type="button" disabled={el.id === activeChatId} onClick={() => handleActiveChat(el)}

@@ -10,6 +10,7 @@ import ImageTech from "../../app/assets/projects/tech.jpg";
 import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
+import TivTacToe from "../../app/assets/projects/tic.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
 import ImageAnimation from "../../app/assets/projects/animation.png";
@@ -43,6 +44,16 @@ const initialState: PortfolioState = {
             technologies: "react, typescript, redux, tailwind, ls, dnd",
             linkDemo: "/todo",
             linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/todo.tsx"
+        },
+
+        {
+            name: "Tic-Tac-Toe",
+            image: TivTacToe,
+            description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны.",
+            id: 17072022,
+            technologies: "html, js, tailwind, jest",
+            linkDemo: "https://sklevzhic.github.io/Tic-Tac-Toe/",
+            linkCode: "https://github.com/sklevzhic/Tic-Tac-Toe"
         },
         {
             name: "Tech",

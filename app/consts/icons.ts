@@ -7,6 +7,7 @@ import {
     SiReactrouter,
     SiRedux,
     SiTypescript,
+    SiJest,
     SiFirebase,
     SiFigma,
     SiAdobephotoshop,
@@ -129,5 +130,10 @@ export const icons: any = {
         label: "Drag and Drop",
         icon: AiOutlineDrag,
         color: "#7c7b7b"
+    },
+    "jest": {
+        label: "Jest",
+        icon: SiJest,
+        color: "#f88507"
     }
 }

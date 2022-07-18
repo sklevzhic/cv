@@ -49,9 +49,9 @@ const initialState: PortfolioState = {
         {
             name: "Tic-Tac-Toe",
             image: TivTacToe,
-            description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны.",
+            description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage",
             id: 17072022,
-            technologies: "html, js, tailwind, jest",
+            technologies: "html, js,typescript, tailwind, jest, ls",
             linkDemo: "https://sklevzhic.github.io/Tic-Tac-Toe/",
             linkCode: "https://github.com/sklevzhic/Tic-Tac-Toe"
         },

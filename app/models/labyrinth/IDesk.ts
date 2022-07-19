@@ -3,7 +3,7 @@ import { Cell } from "./ICell"
 export class Board {
     size: number
     cells: Cell[][] = []
-
+    steps: string[] = []
     constructor(size: number) {
         this.size = size
     }

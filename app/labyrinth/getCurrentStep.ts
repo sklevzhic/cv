@@ -1,11 +1,12 @@
 export function getCurrentStep(x: number, y: number, size: number) {
-    let {axis, operator} = getRandomAxisAndOperator()
-    let arrow: string | null = null
-    let tempX = x
-    let tempY = y
 
-    let sumX = eval(`${tempX} ${operator === "+" ? "+" : "-"} 1`)
-    let sumY = eval(`${tempY} ${operator === "+" ? "+" : "-"} 1`)
+    let {axis, operator} = getRandomAxisAndOperator()
+    let arrow: string  = ""
+    let nextX = x
+    let nextY = y
+
+    let sumX = eval(`${nextX} ${operator === "+" ? "+" : "-"} 1`)
+    let sumY = eval(`${nextY} ${operator === "+" ? "+" : "-"} 1`)
 
     if (sumX < 0) {
         operator = "+"
@@ -39,11 +40,11 @@ export function getCurrentStep(x: number, y: number, size: number) {
     }
 
 
-    tempX = axis === "x" ? sumX : tempX,
-    tempY = axis === "y" ? sumY : tempY,
+    nextX = axis === "x" ? sumX : nextX,
+    nextY = axis === "y" ? sumY : nextY,
     arrow = arrow
 
-    return {tempX,tempY,arrow}
+    return {nextX,nextY,arrow}
 
 }
 

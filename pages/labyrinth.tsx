@@ -6,7 +6,7 @@ import {BoardGame} from "../app/labyrinth/Board";
 import { Steps } from "../app/labyrinth/Steps";
 
 function LabyrinthPage() {
-    let [size, setSize] = useState<number>(6)
+    let [size, setSize] = useState<number>(5)
     const [board, setBoard] = useState(new Board(size))
     let [steps, setSteps] = useState<string[]>(new Array(10).fill(""))
 

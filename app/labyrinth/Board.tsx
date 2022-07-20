@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Cell} from "../models/labyrinth/ICell";
-import {getCurrentStep} from "./getCurrentStep";
+import {getNextStep} from "./getCurrentStep";
 
 interface BoardGameProps {
     cells: Cell[][],
@@ -13,29 +13,40 @@ export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, clearSte
     const [finishCell, setFinishCell] = useState({x: 0, y: 0})
     const [isStart, setIsStart] = useState<boolean>(false)
     const handlerCell = (cell: Cell) => {
-        if (!isStart) {
-            setSelectedCell(cell)
-            fillSteps(cell.x,cell.y, cells.length)
+        if (isStart) {
+            if (finishCell.x === cell.x && finishCell.y ===cell.y) {
+                console.log("won")
+            } else {
+                console.log("lose")
+            }
+            setIsStart(false)
         } else {
+            setIsStart(true)
+            setSelectedCell(cell)
+            fillSteps(cell.x, cell.y, cells.length)
         }
     }
 
     function fillSteps(x: number, y: number, size:number) {
         let current = 0;
         let arrowTemp = ""
-        console.log(finishCell)
-        // let timerId = setInterval(function() {
-        //     let {nextX, nextY, arrow} = getCurrentStep(finishCell.x,finishCell.y, size)
-        //
-        //     setFinishCell({x: nextX, y: nextY})
-        //     arrowTemp = arrow
-        //     handleStep(arrow,current)
-        //
-        //     if (current == 9) {
-        //         clearInterval(timerId);
-        //     }
-        //     current++;
-        // }, 1000);
+        let tempX = x
+        let tempY = y
+        let timerId = setInterval(function() {
+            let {nextX, nextY, arrow} = getNextStep(tempX, tempY, size)
+
+            tempX = nextX
+            tempY = nextY
+
+            arrowTemp = arrow
+            handleStep(arrow, current)
+
+            if (current == 9) {
+                setFinishCell({x: nextX, y: nextY})
+                clearInterval(timerId);
+            }
+            current++;
+        }, 1000);
 
     }
 

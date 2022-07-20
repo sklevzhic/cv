@@ -1,60 +1,34 @@
-export function getCurrentStep(x: number, y: number, size: number) {
+let arrows = {
+    "up": {axis: "y", operator: "-"},
+    "down": {axis: "y", operator: "+"},
+    "left": {axis: "x", operator: "-"},
+    "right": {axis: "x", operator: "+"}
+}
+export function getNextStep(x: number, y: number, size: number) {
 
-    let {axis, operator} = getRandomAxisAndOperator()
-    let arrow: string  = ""
-    let nextX = x
-    let nextY = y
-
-    let sumX = eval(`${nextX} ${operator === "+" ? "+" : "-"} 1`)
-    let sumY = eval(`${nextY} ${operator === "+" ? "+" : "-"} 1`)
-
-    if (sumX < 0) {
-        operator = "+"
-        sumX = -sumX
-    }
-    if (sumY < 0) {
-        operator = "+"
-        sumY = -sumY
-    }
-
-    if (sumX >= size) {
-        operator = "-"
-        sumX = sumX - 1
-    }
-    if (sumX >= size) {
-        operator = "-"
-        sumY = sumY - 1
-    }
-
-    if (axis === "x" && operator === "+") {
-        arrow = "right"
-    }
-    if (axis === "x" && operator === "-") {
-        arrow = "left"
-    }
-    if (axis === "y" && operator === "+") {
-        arrow = "down"
-    }
-    if (axis === "y" && operator === "-") {
-        arrow = "up"
-    }
-
-
-    nextX = axis === "x" ? sumX : nextX,
-    nextY = axis === "y" ? sumY : nextY,
-    arrow = arrow
-
-    return {nextX,nextY,arrow}
+    let arrow = getRandomArrow(x,y,size)
+    let arrowInfo = arrows[arrow]
+    let nextX = (arrowInfo.axis === "x") ? eval(`${x} ${arrowInfo.operator}  1`) : x
+    let nextY = (arrowInfo.axis === "y") ? eval(`${y} ${arrowInfo.operator}  1`) : y
+    return {nextX, nextY, arrow}
 
 }
 
-function getRandomAxisAndOperator() {
-    let operators = "-+";
-    let operatorsIndex = Math.floor(Math.random() * operators.length);
-    let axes = "xy";
-    let axisIndex = Math.floor(Math.random() * operators.length);
-
-    let operator = operators[operatorsIndex]
-    let axis = axes[axisIndex]
-    return {axis, operator}
+function getRandomArrow(x: number, y: number, size:number) {
+    let array = Object.keys(arrows);
+    if (x === 0) {
+        delete array[array.findIndex((el: string) => el === "left")]
+    }
+    if (y === 0) {
+        delete array[array.findIndex((el: string) => el === "up")]
+    }
+    if (x === size - 1) {
+        delete array[array.findIndex((el: string) => el === "right")]
+    }
+    if (y === size - 1) {
+        delete array[array.findIndex((el: string) => el === "down")]
+    }
+    array = array.filter(n => n)
+    let a = Math.floor(Math.random()*array.filter(n => n).length)
+    return array[a]
 }

@@ -7,6 +7,7 @@ import { Steps } from "../app/labyrinth/Steps";
 
 function LabyrinthPage() {
     let [size, setSize] = useState<number>(5)
+    let [isGame, setIsGame] = useState<boolean>(true)
     const [board, setBoard] = useState(new Board(size))
     let [steps, setSteps] = useState<string[]>(new Array(10).fill(""))
 
@@ -19,11 +20,9 @@ function LabyrinthPage() {
                 return arr
             })
     }
-
-    function clearSteps() {
+    function newGame() {
         setSteps(new Array(10).fill(""))
     }
-
     useEffect(() => {
         renderDesk()
     }, [])
@@ -39,12 +38,20 @@ function LabyrinthPage() {
         <div className={"basis-2/6 shrink-0"}>
             <Settings />
         </div>
-        <div className={"basis-4/6 shrink-0"}>
-            <div>
-                <BoardGame cells={board.cells} handleStep={(arrow,i) => handleStep(arrow,i)} clearSteps={clearSteps}/>
+        <div className={"basis-4/6 "}>
+            <div className={"relative"}>
+                <div className={"absolute bg-white opacity-60 border-8" +
+                    "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"}>
+                    <button>newGame</button></div>
+                <BoardGame
+                    cells={board.cells}
+                    handleStep={(arrow,i) => handleStep(arrow,i)}
+                    newGame={newGame}
+                    isGame={isGame}
+                />
             </div>
             <div>
-                <button onClick={() => clearSteps()}>del</button>
+                <button onClick={() => newGame()}>del</button>
                 <Steps steps={steps}/>
             </div>
         </div>

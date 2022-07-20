@@ -2,27 +2,31 @@ import React, {useEffect, useState} from 'react'
 import {Cell} from "../models/labyrinth/ICell";
 import {getNextStep} from "./getCurrentStep";
 
+import {BsCursorFill, BsXCircleFill, BsCheckCircleFill} from "react-icons/bs"
+
 interface BoardGameProps {
     cells: Cell[][],
     handleStep: (v: string, i:number) => void
-    clearSteps: () => void
+    newGame: () => void,
+    isGame: boolean
 }
 
-export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, clearSteps}) => {
-    const [selectedCell, setSelectedCell] = useState<Cell | null>(null)
-    const [finishCell, setFinishCell] = useState({x: 0, y: 0})
+export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, newGame, isGame}) => {
+    const [startCell, setStartCell] = useState<Cell | null>(null)
+    const [finishCell, setFinishCell] = useState({x: 0, y: 0, visible: false})
+    const [selectedCell, setSelectedCell] = useState({x: 0, y: 0, visible: false})
     const [isStart, setIsStart] = useState<boolean>(false)
     const handlerCell = (cell: Cell) => {
         if (isStart) {
             if (finishCell.x === cell.x && finishCell.y ===cell.y) {
                 console.log("won")
             } else {
-                console.log("lose")
+                setFinishCell({...finishCell, visible: true})
             }
             setIsStart(false)
         } else {
             setIsStart(true)
-            setSelectedCell(cell)
+            setStartCell(cell)
             fillSteps(cell.x, cell.y, cells.length)
         }
     }
@@ -42,11 +46,11 @@ export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, clearSte
             handleStep(arrow, current)
 
             if (current == 9) {
-                setFinishCell({x: nextX, y: nextY})
+                setFinishCell({...finishCell, x: nextX, y: nextY})
                 clearInterval(timerId);
             }
             current++;
-        }, 1000);
+        }, 300);
 
     }
 
@@ -56,17 +60,23 @@ export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, clearSte
     return <div className={"flex flex-col"}>
         {
             cells.map((row, i) => {
-                return <div className={"flex"} key={i}>
+                return <div className={"flex items-center"} key={i}>
                     {
                         row.map((cell) => {
                             return <div
                                 key={`${cell.x}${cell.y}`}
                                 onClick={() => handlerCell(cell)}
-                                className={"flex w-24 h-24 border"}
+                                className={`flex w-24 h-24 border bg-yellow-200 ${isGame ? "cursor-pointer" : ""}" p-2 hover:bg-yellow-300`}
                             >
-                                {`${cell.x}${cell.y}`}
-                                {(selectedCell?.x === cell.x && selectedCell.y === cell.y) ? "start" : ""}
-                                {/*{(finishCell?.x === cell.x && finishCell.y === cell.y) ? "finish" : ""}*/}
+                                {(startCell?.x === cell.x && startCell.y === cell.y)
+                                    ? <BsCursorFill className={"text-7xl center text-blue-100"}/>
+                                    : ""}
+                                {(finishCell.x === cell.x && finishCell.y === cell.y && finishCell.visible)
+                                    ? <BsXCircleFill className={"text-7xl center text-red-500"}/>
+                                    : ""}
+                                {/*{(3 === cell.x && 3 === cell.y)*/}
+                                {/*    ? <BsCheckCircleFill className={"text-7xl center text-green-600"}/>*/}
+                                {/*    : ""}*/}
                             </div>
                         })
                     }

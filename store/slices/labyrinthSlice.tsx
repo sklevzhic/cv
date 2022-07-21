@@ -1,6 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {initialBoard} from "../../app/labyrinth/utils/initialArrays";
 import {arrows} from "../../app/labyrinth/getCurrentStep";
+import { ICell } from '../../app/labyrinth/types/ICell';
 
 
 export interface LabyrinthState {

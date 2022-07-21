@@ -1,35 +1,42 @@
 import React, {useEffect, useState} from 'react'
-import {Cell} from "../models/labyrinth/ICell";
 import {getNextStep} from "./getCurrentStep";
 
 import {BsCursorFill, BsXCircleFill, BsCheckCircleFill} from "react-icons/bs"
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store";
+import {
+    setErrorCell,
+    setFinishCell,
+    setIsGame,
+    setNewGame,
+    setStartCell,
+    setStep
+} from '../../store/slices/labyrinthSlice';
 
 interface BoardGameProps {
-    cells: Cell[][],
-    handleStep: (v: string, i:number) => void
-    newGame: () => void,
-    isGame: boolean
+
 }
 
-export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, newGame, isGame}) => {
-    const [startCell, setStartCell] = useState<Cell | null>(null)
-    const [finishCell, setFinishCell] = useState({x: 0, y: 0, visible: false})
-    const [selectedCell, setSelectedCell] = useState({x: 0, y: 0, visible: false})
-    const [isStart, setIsStart] = useState<boolean>(false)
-    const handlerCell = (cell: Cell) => {
-        if (isStart) {
-            if (finishCell.x === cell.x && finishCell.y ===cell.y) {
-                console.log("won")
-            } else {
-                setFinishCell({...finishCell, visible: true})
-            }
-            setIsStart(false)
+export const BoardGame: React.FC<BoardGameProps> = () => {
+    let dispatch = useDispatch()
+
+    let {board, startCell, errorCell, finishCell, isGame} = useSelector((state: RootState) => state.labyrinth)
+    const handlerCell = (cell: ICell) => {
+        if (!isGame) {
+            dispatch(setNewGame())
+            dispatch(setStartCell(cell))
+            fillSteps(cell.x, cell.y, board.length)
         } else {
-            setIsStart(true)
-            setStartCell(cell)
-            fillSteps(cell.x, cell.y, cells.length)
+            if ((finishCell.x === cell.x) && (finishCell.y === cell.y)) {
+                dispatch(setFinishCell({...finishCell, visible: true}))
+            } else {
+                dispatch(setErrorCell({...cell, visible: true}))
+                dispatch(setFinishCell({...finishCell, visible: true}))
+            }
+            dispatch(setIsGame(false))
         }
     }
+
 
     function fillSteps(x: number, y: number, size:number) {
         let current = 0;
@@ -43,24 +50,22 @@ export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, newGame,
             tempY = nextY
 
             arrowTemp = arrow
-            handleStep(arrow, current)
+            dispatch(setStep({arrow, current}))
 
             if (current == 9) {
-                setFinishCell({...finishCell, x: nextX, y: nextY})
+                dispatch(setFinishCell({x: nextX, y: nextY, visible: false}))
                 clearInterval(timerId);
             }
             current++;
-        }, 300);
+        }, 100);
 
     }
 
-
-
-
     return <div className={"flex flex-col"}>
         {
-            cells.map((row, i) => {
+            board.map((row, i) => {
                 return <div className={"flex items-center"} key={i}>
+
                     {
                         row.map((cell) => {
                             return <div
@@ -71,12 +76,12 @@ export const BoardGame: React.FC<BoardGameProps> = ({cells, handleStep, newGame,
                                 {(startCell?.x === cell.x && startCell.y === cell.y)
                                     ? <BsCursorFill className={"text-7xl center text-blue-100"}/>
                                     : ""}
-                                {(finishCell.x === cell.x && finishCell.y === cell.y && finishCell.visible)
-                                    ? <BsXCircleFill className={"text-7xl center text-red-500"}/>
+                                {(errorCell.x === cell.x && errorCell.y === cell.y && errorCell.visible)
+                                    ? <BsXCircleFill className={"text-7xl center text-red-600"}/>
                                     : ""}
-                                {/*{(3 === cell.x && 3 === cell.y)*/}
-                                {/*    ? <BsCheckCircleFill className={"text-7xl center text-green-600"}/>*/}
-                                {/*    : ""}*/}
+                                {(finishCell.x === cell.x && finishCell.y === cell.y && finishCell.visible)
+                                    ? <BsCheckCircleFill className={"text-7xl center text-green-600"}/>
+                                    : ""}
                             </div>
                         })
                     }

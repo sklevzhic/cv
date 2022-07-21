@@ -1,12 +1,14 @@
 import React from 'react'
 import {CellStep} from "./CellStep";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
 interface StepsProps {
-    steps: any
+
 }
 
-export const Steps: React.FC<StepsProps> = ({steps}) => {
-
+export const Steps: React.FC<StepsProps> = () => {
+    let { steps } = useSelector((state: RootState) => state.labyrinth)
     return <div>
         Шаги
         <div className={"flex w-80"}>

@@ -11,6 +11,7 @@ import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import TivTacToe from "../../app/assets/projects/tic.jpg";
+import Game2 from "../../app/assets/projects/game2.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
 import ImageAnimation from "../../app/assets/projects/animation.png";
@@ -56,6 +57,17 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/Tic-Tac-Toe"
         },
         {
+            name: "Game 2",
+            image: Game2,
+            description: "В начале игры в случайную ячейку помещаем маркер. Далее генерируются 10 «ходов» (возможные варианты «вверх», «влево», «вниз», «вправо»). Игрок должен в уме «пройти» по этим ходам по лабиринту и указать конечную точку маркера.\n" +
+                "\n" +
+                "После ответа (клик на ячейку) идет проверка ответа и предоставляется возможность начать новую игру (например, по клику на кнопку «Далее»). Если ответ введен неправильно - указать правильный ответ.",
+            id: 21072022,
+            technologies: "react, typescript, tailwind, redux",
+            linkDemo: "/labyrinth",
+            linkCode: "https://github.com/sklevzhic/cv/tree/main/app/labyrinth"
+        },
+        {
             name: "Tech",
             image: ImageTech,
             description: "Приложение для учета техники",
@@ -63,7 +75,8 @@ const initialState: PortfolioState = {
             technologies: "react, redux, material",
             linkDemo: "https://sklevzhic.github.io/tech",
             linkCode: "https://github.com/sklevzhic/tech/tree/master"
-        },        {
+        },
+        {
             name: "Calendar",
             image: ImageCalendar,
             description: "-",

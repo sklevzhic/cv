@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {getNextStep} from "./getCurrentStep";
 
 import {BsCursorFill, BsXCircleFill, BsCheckCircleFill} from "react-icons/bs"
@@ -13,6 +13,7 @@ import {
     setStartCell,
     setStep
 } from '../../store/slices/labyrinthSlice';
+import { ICell } from './types/ICell';
 
 interface BoardGameProps {
 
@@ -75,7 +76,7 @@ export const BoardGame: React.FC<BoardGameProps> = () => {
                             return <div
                                 key={`${cell.x}${cell.y}`}
                                 onClick={() => handlerCell(cell)}
-                                className={`flex w-24 h-24 border bg-yellow-200 ${ isLoadingSteps ? "pointer-events-none" : "cursor-pointer" } 
+                                className={`flex w-24 h-24 border bg-yellow-200 ${ isLoadingSteps ? "pointer-events-none cursor-loading" : "cursor-pointer" } 
                                 p-2 hover:bg-yellow-300`}
                             >
                                 {(startCell?.x === cell.x && startCell.y === cell.y)

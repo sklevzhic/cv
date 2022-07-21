@@ -8,6 +8,7 @@ import {
     setErrorCell,
     setFinishCell,
     setIsGame,
+    setIsLoadingSteps,
     setNewGame,
     setStartCell,
     setStep
@@ -20,7 +21,7 @@ interface BoardGameProps {
 export const BoardGame: React.FC<BoardGameProps> = () => {
     let dispatch = useDispatch()
 
-    let {board, startCell, errorCell, finishCell, isGame} = useSelector((state: RootState) => state.labyrinth)
+    let {board, startCell, errorCell, finishCell, isGame, isLoadingSteps} = useSelector((state: RootState) => state.labyrinth)
     const handlerCell = (cell: ICell) => {
         if (!isGame) {
             dispatch(setNewGame())
@@ -38,11 +39,13 @@ export const BoardGame: React.FC<BoardGameProps> = () => {
     }
 
 
+
     function fillSteps(x: number, y: number, size:number) {
         let current = 0;
         let arrowTemp = ""
         let tempX = x
         let tempY = y
+        dispatch(setIsLoadingSteps(true))
         let timerId = setInterval(function() {
             let {nextX, nextY, arrow} = getNextStep(tempX, tempY, size)
 
@@ -54,10 +57,11 @@ export const BoardGame: React.FC<BoardGameProps> = () => {
 
             if (current == 9) {
                 dispatch(setFinishCell({x: nextX, y: nextY, visible: false}))
+                dispatch(setIsLoadingSteps(false))
                 clearInterval(timerId);
             }
             current++;
-        }, 100);
+        }, 500);
 
     }
 
@@ -71,7 +75,8 @@ export const BoardGame: React.FC<BoardGameProps> = () => {
                             return <div
                                 key={`${cell.x}${cell.y}`}
                                 onClick={() => handlerCell(cell)}
-                                className={`flex w-24 h-24 border bg-yellow-200 ${isGame ? "cursor-pointer" : ""}" p-2 hover:bg-yellow-300`}
+                                className={`flex w-24 h-24 border bg-yellow-200 ${ isLoadingSteps ? "pointer-events-none" : "cursor-pointer" } 
+                                p-2 hover:bg-yellow-300`}
                             >
                                 {(startCell?.x === cell.x && startCell.y === cell.y)
                                     ? <BsCursorFill className={"text-7xl center text-blue-100"}/>

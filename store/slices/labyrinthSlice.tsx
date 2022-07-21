@@ -11,6 +11,7 @@ export interface LabyrinthState {
     startCell: ICell,
     errorCell: ICell,
     finishCell: ICell,
+    isLoadingSteps: boolean
 }
 
 let defaultSteps = new Array(10).fill("")
@@ -22,7 +23,8 @@ const initialState: LabyrinthState = {
     isGame: false,
     startCell: {} as ICell,
     errorCell: {} as ICell,
-    finishCell: {} as ICell
+    finishCell: {} as ICell,
+    isLoadingSteps: false
 }
 
 export const labyrinthSlice = createSlice({
@@ -61,9 +63,13 @@ export const labyrinthSlice = createSlice({
         setStep: (state,action:PayloadAction<{arrow: string, current: number}>) => {
             state.steps[action.payload.current] = action.payload.arrow
         },
+        setIsLoadingSteps: (state,action:PayloadAction<boolean>) => {
+            state.isLoadingSteps = action.payload
+        },
     },
 })
 
-export const { setBoard, setStartCell, setFinishCell, setIsGame, setNewGame, setSize, setStep,setErrorCell } = labyrinthSlice.actions
+export const { setBoard, setStartCell, setFinishCell, setIsGame,
+    setNewGame, setSize, setStep, setErrorCell, setIsLoadingSteps } = labyrinthSlice.actions
 
 export default labyrinthSlice.reducer

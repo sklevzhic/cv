@@ -17,7 +17,7 @@ export const Settings: React.FC<SettingsProps> = () => {
     return <>
         <h2 className={"border-b text-center text-3xl p-2"}>Игра</h2>
 
-        <div className={"text-xl p-2"}>
+        <div className={"text-l p-2"}>
             <p>В начале игры в случайную ячейку помещаем маркер. Далее генерируются 10 «ходов» (возможные варианты «вверх»,
                 «влево», «вниз», «вправо»). Игрок должен в уме «пройти» по этим ходам по лабиринту и указать конечную точку
                 маркера.</p>

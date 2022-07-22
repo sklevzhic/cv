@@ -1,3 +1,5 @@
+import { ICell } from "../types/ICell";
+
 export function initialBoard(size: number) {
     let arr: ICell[][] = []
     for (let i = 0; i < size; i++) {

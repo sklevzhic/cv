@@ -6,7 +6,7 @@ import CardPortfolio from "../app/components/CardPortfolio";
 import {useSelector} from "react-redux";
 import {RootState} from "../store";
 import Link from "next/link";
-import Image from "next/image";
+import Layout from "../app/layout/MainLayout"
 import SectionInformation from "../app/components/SectionInformation";
 import {AiFillCrown} from "react-icons/ai"
 import {BsTelephoneFill} from "react-icons/bs"
@@ -76,7 +76,8 @@ const HomePage: FC = () => {
     let [one, wto, three] = useSelector((state: RootState) => state.portfolio.items)
     let projects = [one, wto, three]
     let [isVisibleTechnologies, setIsVisibleTechnologies] = useState<boolean>(false)
-    return <div className="grid overflow-hidden grid-flow-row-dense grid-cols-6 ">
+    return <Layout>
+        <div className="grid overflow-hidden grid-flow-row-dense grid-cols-6 ">
 
         <div className="col-span-6">
             <section className="text-gray-600 body-font py-5 ">
@@ -221,6 +222,7 @@ const HomePage: FC = () => {
         </div>
 
     </div>
+    </Layout>
 }
 
 export default HomePage

@@ -23,9 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           gtag('config', 'G-DZB5CFBQW4');
         `}
       </Script>
-      <Layout>
+
         <Component {...pageProps} />
-      </Layout>
+
     </div>
   </Provider>
 }

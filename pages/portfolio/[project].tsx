@@ -2,6 +2,7 @@ import React, {FC, useEffect} from "react";
 import Breadcrumbs from "../../app/components/Breadcrumbs";
 import TitlePage from "../../app/components/TitlePage";
 import cn from "classnames";
+import Layout from "../../app/layout/MainLayout"
 import TechnologyItem from "../../app/components/TechnologyItem";
 import {useDispatch, useSelector} from "react-redux";
 import { getActiveProject } from "../../store/slices/portfolioSlice";
@@ -22,7 +23,7 @@ const ProjectPage: FC = () => {
     const activeProduct = useSelector((state: RootState) => state.portfolio.activeProject)
 
     return (
-        <div>
+        <Layout>
             <Breadcrumbs/>
             <TitlePage text={activeProduct && activeProduct.name}/>
             <section className="text-gray-600 body-font">
@@ -69,7 +70,7 @@ const ProjectPage: FC = () => {
                 </div>
             </section>
 
-        </div>
+        </Layout>
     )
 }
 

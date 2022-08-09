@@ -12,6 +12,7 @@ import {
     SiFigma,
     SiAdobephotoshop,
     SiGit,
+    SiTestinglibrary,
     SiWordpress,
     SiTailwindcss
 } from "react-icons/si";
@@ -135,5 +136,15 @@ export const icons: any = {
         label: "Jest",
         icon: SiJest,
         color: "#f88507"
+    },
+    "rtl": {
+        label: "React Testing Library",
+        icon: SiTestinglibrary,
+        color: "#ee2626"
+    },
+    "context": {
+        label: "Context API",
+        icon: DiReact,
+        color: "#1faab9"
     }
 }

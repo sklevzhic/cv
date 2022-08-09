@@ -1,4 +1,4 @@
-import {AnyAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {AnyAction, createSlice, PayloadAction} from '@reduxjs/toolkit'
 import ImageCrypto from "../../app/assets/projects/crypto.jpg";
 import ImageCalendar from "../../app/assets/projects/calendar.jpg";
 import ImageEnglish from "../../app/assets/projects/english.jpg";
@@ -14,6 +14,7 @@ import TivTacToe from "../../app/assets/projects/tic.jpg";
 import Game2 from "../../app/assets/projects/game2.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
+import ImageTodoListApp from "../../app/assets/projects/todolistapp.jpg";
 import ImageAnimation from "../../app/assets/projects/animation.png";
 import ImageChat from "../../app/assets/projects/chat.jpg";
 import {IProject} from "../../app/models/IProject";
@@ -46,15 +47,14 @@ const initialState: PortfolioState = {
             linkDemo: "/todo",
             linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/todo.tsx"
         },
-
         {
             name: "Tic-Tac-Toe",
             image: TivTacToe,
             description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage",
             id: 17072022,
-            technologies: "html, js,typescript, tailwind, jest, ls",
-            linkDemo: "https://sklevzhic.github.io/Tic-Tac-Toe/",
-            linkCode: "https://github.com/sklevzhic/Tic-Tac-Toe"
+            technologies: "react,typescript,context, tailwind, jest, rtl, ls",
+            linkDemo: "https://tttreact.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/tttreact"
         },
         {
             name: "Game 2",
@@ -63,7 +63,7 @@ const initialState: PortfolioState = {
                 "\n" +
                 "После ответа (клик на ячейку) идет проверка ответа и предоставляется возможность начать новую игру (например, по клику на кнопку «Далее»). Если ответ введен неправильно - указать правильный ответ.",
             id: 21072022,
-            technologies: "react, typescript, tailwind, redux",
+            technologies: "react, typescript, tailwind, redux, context, ls",
             linkDemo: "/labyrinth",
             linkCode: "https://github.com/sklevzhic/cv/tree/main/app/labyrinth"
         },
@@ -75,6 +75,15 @@ const initialState: PortfolioState = {
             technologies: "react, redux, material",
             linkDemo: "https://sklevzhic.github.io/tech",
             linkCode: "https://github.com/sklevzhic/tech/tree/master"
+        },
+        {
+            name: "TodoList",
+            image: ImageTodoListApp,
+            description: "Тестовое заданиие ToDO List. ",
+            id: 982022,
+            technologies: "react, typescript, context, tailwind, ls, jest, rtl",
+            linkDemo: "https://testapptodo.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/testapptodo"
         },
         {
             name: "Calendar",
@@ -202,13 +211,16 @@ export const portfolioSlice = createSlice({
         setTechnologies: (state, action: PayloadAction<string>) => {
             state.technologies = action.payload;
             state.items = state.items.map(el => {
-                if ((el.technologies.includes(action.payload)) || action.payload === "all" ) return { ...el, visible: true }
-                else return { ...el, visible: false }
+                if ((el.technologies.includes(action.payload)) || action.payload === "all") return {
+                    ...el,
+                    visible: true
+                }
+                else return {...el, visible: false}
             })
         },
     },
 })
 
-export const { getActiveProject, setTechnologies } = portfolioSlice.actions
+export const {getActiveProject, setTechnologies} = portfolioSlice.actions
 
 export default portfolioSlice.reducer

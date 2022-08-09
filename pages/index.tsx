@@ -73,155 +73,163 @@ let courses: any = [
 
 
 const HomePage: FC = () => {
-    let [one, wto, three] = useSelector((state: RootState) => state.portfolio.items)
-    let projects = [one, wto, three]
+    let [one,two,three] = useSelector((state: RootState) => state.portfolio.items)
+
     let [isVisibleTechnologies, setIsVisibleTechnologies] = useState<boolean>(false)
     return <Layout>
         <div className="grid overflow-hidden grid-flow-row-dense grid-cols-6 ">
 
-        <div className="col-span-6">
-            <section className="text-gray-600 body-font py-5 ">
-                <div className="container mx-auto flex px-5 mb-10 items-center justify-center flex-col">
-                    <img className="lg:w-1/6 md:w-2/6 w-4/6 mb-10 object-cover object-center rounded-full" alt="hero"
-                         src={Photo.src}/>
-                    <div className="text-center lg:w-2/3 w-full">
-                        <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Александр
-                            Клевжиц</h1>
-                        <p className="mb-8 leading-relaxed">
-                            Интересуюсь разработкой клиентских веб-приложений. Открыт к изучению новых современных
-                            технологий.
-                        </p>
-                        <div className="flex justify-center">
-                            <Link href={"/portfolio"}>
-                                <button
-                                    className="inline-flex text-white bg-lime-500 border-0 py-2 px-6 focus:outline-none hover:bg-lime-600 rounded text-lg">Портфолио
-                                </button>
-                            </Link>
-                            <a href={"#contacts"}
-                               className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Контакты
-                            </a>
+            <div className="col-span-6">
+                <section className="text-gray-600 body-font py-5 ">
+                    <div className="container mx-auto flex px-5 mb-10 items-center justify-center flex-col">
+                        <img className="lg:w-1/6 md:w-2/6 w-4/6 mb-10 object-cover object-center rounded-full"
+                             alt="hero"
+                             src={Photo.src}/>
+                        <div className="text-center lg:w-2/3 w-full">
+                            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Александр
+                                Клевжиц</h1>
+                            <p className="mb-8 leading-relaxed">
+                                Интересуюсь разработкой клиентских веб-приложений. Открыт к изучению новых современных
+                                технологий.
+                            </p>
+                            <div className="flex justify-center">
+                                <Link href={"/portfolio"}>
+                                    <button
+                                        className="inline-flex text-white bg-lime-500 border-0 py-2 px-6 focus:outline-none hover:bg-lime-600 rounded text-lg">Портфолио
+                                    </button>
+                                </Link>
+                                <a href={"#contacts"}
+                                   className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Контакты
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section className="text-gray-600 body-font bg-gray-50 rounded-2xl">
-                <div className="container px-5 py-10 mx-auto">
-                    <div className="text-center mb-10">
-                        <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Технологии</h1>
-                        <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Указаны технологии, которые
-                            применял в своих проектах</p>
+                </section>
+                <section className="text-gray-600 body-font bg-gray-50 rounded-2xl">
+                    <div className="container px-5 py-10 mx-auto">
+                        <div className="text-center mb-10">
+                            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Технологии</h1>
+                            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Указаны технологии,
+                                которые
+                                применял в своих проектах</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center relative -m-4 mb-2">
+
+
+                            <div
+                                className={cn("items-center overflow-hidden text-center -mb-1 sm:text-left sm:columns-2 md:columns-3 lg:columns-4",
+                                    {"max-h-80": !isVisibleTechnologies})}>
+
+                                {
+                                    Object.keys(icons).map(key => {
+                                        return <Link key={key} href={"/portfolio?technology=" + key}>
+                                            <a className={"flex cursor-pointer w-44 items-center p-0.5 hover:bg-lime-100"}>
+                                                <Icon color={icons[key].color} icon={icons[key].icon}/>
+                                                {icons[key].label}
+                                            </a>
+                                        </Link>
+                                    })
+                                }
+
+                            </div>
+                            <button onClick={() => setIsVisibleTechnologies(!isVisibleTechnologies)}
+                                    className={"absolute -bottom-10 sm:hidden"}>{!isVisibleTechnologies ? "Развернуть" : "Свернуть"}</button>
+
+                        </div>
                     </div>
-                    <div className="flex flex-wrap justify-center relative -m-4 mb-2">
+                </section>
 
 
-                        <div
-                            className={cn("items-center overflow-hidden text-center -mb-1 sm:text-left sm:columns-2 md:columns-3 lg:columns-4",
-                                {"max-h-80": !isVisibleTechnologies})}>
-
+                <section>
+                    <div className="container px-5 py-10 mx-auto text-center">
+                        <div className="text-center mb-10">
+                            <h2 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Последние
+                                проекты</h2>
+                            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">3 последних проекта</p>
+                        </div>
+                        <div className="flex flex-wrap justify-evenly">
+                            {/*{*/}
+                            {/*    projects.map(el => {*/}
+                            {/*        return <>{el.description}</>*/}
+                            {/*    })*/}
+                            {/*}*/}
                             {
-                                Object.keys(icons).map(key => {
-                                    return <Link key={key} href={"/portfolio?technology=" + key}>
-                                        <a className={"flex cursor-pointer w-44 items-center p-0.5 hover:bg-lime-100"}>
-                                            <Icon color={icons[key].color} icon={icons[key].icon}/>
-                                            {icons[key].label}
-                                        </a>
-                                    </Link>
+                                [one,two,three].map((el: IProject) => {
+                                    return <CardPortfolio key={el.id} el={el}/>
                                 })
                             }
 
                         </div>
-                        <button onClick={() => setIsVisibleTechnologies(!isVisibleTechnologies)}
-                                className={"absolute -bottom-10 sm:hidden"}>{!isVisibleTechnologies ? "Развернуть" : "Свернуть"}</button>
-
-                    </div>
-                </div>
-            </section>
-
-
-            <section>
-                <div className="container px-5 py-10 mx-auto text-center">
-                    <div className="text-center mb-10">
-                        <h2 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Последние
-                            проекты</h2>
-                        <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">3 последних проекта</p>
-                    </div>
-                    <div className="flex flex-wrap justify-evenly">
-                        {
-                            projects.map((el: IProject) => {
-                                return <CardPortfolio key={el.id} el={el}/>
-                            })
-                        }
-
-                    </div>
-                    <Link href={"/portfolio"}>
-                        <button
-                            className="inline-flex text-white bg-lime-500 border-0 py-2 px-6
+                        <Link href={"/portfolio"}>
+                            <button
+                                className="inline-flex text-white bg-lime-500 border-0 py-2 px-6
                         focus:outline-none hover:bg-lime-600 rounded text-lg">Все проекты
-                        </button>
-                    </Link>
-                </div>
-            </section>
-
-            <SectionInformation arr={educations} title={"Образование"}/>
-            <SectionInformation arr={jobs} title={"Опыт работы"}/>
-            <SectionInformation arr={courses} title={"Курсы"}
-                                description={"Самостоятельное обучение. Нет подтверждения сертификатом"}/>
-
-            <section>
-                <div className="container px-5 py-10 mx-auto text-center">
-                    <div className="text-center mb-10">
-                        <h2 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Английский
-                            язык</h2>
-                        <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Английский на стадии
-                            изучения</p>
+                            </button>
+                        </Link>
                     </div>
-                    <div className="flex flex-wrap justify-evenly">
+                </section>
+
+                <SectionInformation arr={educations} title={"Образование"}/>
+                <SectionInformation arr={jobs} title={"Опыт работы"}/>
+                <SectionInformation arr={courses} title={"Курсы"}
+                                    description={"Самостоятельное обучение. Нет подтверждения сертификатом"}/>
+
+                <section>
+                    <div className="container px-5 py-10 mx-auto text-center">
+                        <div className="text-center mb-10">
+                            <h2 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Английский
+                                язык</h2>
+                            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Английский на стадии
+                                изучения</p>
+                        </div>
+                        <div className="flex flex-wrap justify-evenly">
 
 
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section className="text-gray-600 body-font bg-gray-50 rounded-2xl" id={"contacts"}>
-                <div className="container px-5 py-10 mx-auto">
-                    <div className="text-center mb-10">
-                        <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Контакты</h1>
-                        <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Связаться со мной можно через
-                            следующие контакты</p>
-                    </div>
-                    <div className="flex flex-wrap justify-center relative -m-4 mb-2">
-                        <div
-                            className={cn("items-center overflow-hidden text-center -mb-1 sm:text-left")}>
+                <section className="text-gray-600 body-font bg-gray-50 rounded-2xl" id={"contacts"}>
+                    <div className="container px-5 py-10 mx-auto">
+                        <div className="text-center mb-10">
+                            <h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">Контакты</h1>
+                            <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">Связаться со мной можно
+                                через
+                                следующие контакты</p>
+                        </div>
+                        <div className="flex flex-wrap justify-center relative -m-4 mb-2">
+                            <div
+                                className={cn("items-center overflow-hidden text-center -mb-1 sm:text-left")}>
 
-                            <div className={"text-xl flex flex-col justify-center"}>
-                                <div className={"flex items-center"}><Icon icon={BsTelephoneFill}
-                                                                           color={"#489806"}/> <a
-                                    href="tel:+375291095895">+375 (29) 109-58-95</a>
-                                </div>
-                                <div className={"flex items-center"}><Icon icon={SiGmail} color={"#b94444"}/>
-                                    <a href="mailto:sklevzhic@gmail.com">sklevzhic@gmail.com</a></div>
-                                <div className={"flex justify-center  mt-4"}>
-                                    <a href={"https://t.me/sklevzhic"} rel="noreferrer" target={"_blank"}><Icon
-                                        icon={SiTelegram} color={"#3297dc"}/></a>
-                                    <a href={"viber://auth?number=+375291095895"} rel="noreferrer"
-                                       target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
-                                    <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}
-                                       rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp}
-                                                                                color={"#6dde6f"}/></a>
+                                <div className={"text-xl flex flex-col justify-center"}>
+                                    <div className={"flex items-center"}><Icon icon={BsTelephoneFill}
+                                                                               color={"#489806"}/> <a
+                                        href="tel:+375291095895">+375 (29) 109-58-95</a>
+                                    </div>
+                                    <div className={"flex items-center"}><Icon icon={SiGmail} color={"#b94444"}/>
+                                        <a href="mailto:sklevzhic@gmail.com">sklevzhic@gmail.com</a></div>
+                                    <div className={"flex justify-center  mt-4"}>
+                                        <a href={"https://t.me/sklevzhic"} rel="noreferrer" target={"_blank"}><Icon
+                                            icon={SiTelegram} color={"#3297dc"}/></a>
+                                        <a href={"viber://auth?number=+375291095895"} rel="noreferrer"
+                                           target={"_blank"}><Icon icon={SiViber} color={"#af1dea"}/></a>
+                                        <a href={"https://api.whatsapp.com/send/?phone=375297559056&text&app_absent=0"}
+                                           rel="noreferrer" target={"_blank"}><Icon icon={SiWhatsapp}
+                                                                                    color={"#6dde6f"}/></a>
+                                    </div>
                                 </div>
                             </div>
+                            <button onClick={() => setIsVisibleTechnologies(!isVisibleTechnologies)}
+                                    className={"absolute -bottom-10 sm:hidden"}>{!isVisibleTechnologies ? "Развернуть" : "Свернуть"}</button>
+
                         </div>
-                        <button onClick={() => setIsVisibleTechnologies(!isVisibleTechnologies)}
-                                className={"absolute -bottom-10 sm:hidden"}>{!isVisibleTechnologies ? "Развернуть" : "Свернуть"}</button>
-
                     </div>
-                </div>
-            </section>
+                </section>
 
+
+            </div>
 
         </div>
-
-    </div>
     </Layout>
 }
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, {FC} from "react";
 import TechnologyItem from "./TechnologyItem";
 import {IProject} from "../models/IProject";
+import { useRouter } from "next/router";
 
 
 interface CardPortfolioProps {
@@ -9,7 +10,9 @@ interface CardPortfolioProps {
 }
 
 const CardPortfolio: FC<CardPortfolioProps> = ({el}) => {
-    if (!el.visible) return <></>
+    let { asPath } = useRouter()
+
+    if (!el.visible && asPath !== "/") return <></>
 
     return <Link href={"portfolio/" + el.id}>
         <div

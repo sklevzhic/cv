@@ -28,16 +28,6 @@ export interface PortfolioState {
 const initialState: PortfolioState = {
     items: [
         {
-            name: "Crypto App",
-            image: ImageCrypto,
-            description: "тестовое задание ()",
-            id: 1,
-            technologies: "react, redux, typescript, antd",
-            linkDemo: "https://crypto-app-self-zeta.vercel.app/",
-            linkCode: "https://github.com/sklevzhic/crypto-app"
-        },
-
-        {
             name: "TodoList",
             image: ImageTodo,
             description: "TodoList. Аналог Trello. Столбцы: добавление,удаление, перемещение. " +
@@ -66,6 +56,15 @@ const initialState: PortfolioState = {
             technologies: "react, typescript, tailwind, redux, context, ls",
             linkDemo: "/labyrinth",
             linkCode: "https://github.com/sklevzhic/cv/tree/main/app/labyrinth"
+        },
+        {
+            name: "Crypto App",
+            image: ImageCrypto,
+            description: "тестовое задание ()",
+            id: 1,
+            technologies: "react, redux, typescript, antd",
+            linkDemo: "https://crypto-app-self-zeta.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/crypto-app"
         },
         {
             name: "Tech",

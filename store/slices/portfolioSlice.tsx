@@ -39,7 +39,7 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/todo.tsx"
         },
         {
-            name: "Tic-Tac-Toe (",
+            name: "Tic-Tac-Toe",
             image: TTT2,
             description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage",
             id: 28082022,

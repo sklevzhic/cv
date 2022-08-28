@@ -177,17 +177,6 @@ const initialState: PortfolioState = {
             linkDemo: "https://sklevzhic.github.io/animation-piksel/",
             linkCode: "https://github.com/sklevzhic/animation-piksel/tree/gh-pages"
         },
-
-        {
-            name: "Tic-Tac-Toe (реакт, старая версия)",
-            image: TivTacToe,
-            description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage (Старая версия)",
-            id: 17072022,
-            technologies: "react,typescript,context, tailwind, jest, rtl, ls",
-            linkDemo: "https://tttreact.vercel.app/",
-            linkCode: "https://github.com/sklevzhic/tttreact"
-        },
-
         {
             name: "Design 1",
             image: ImageDes1,

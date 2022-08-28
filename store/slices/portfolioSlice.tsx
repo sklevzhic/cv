@@ -11,6 +11,7 @@ import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import TivTacToe from "../../app/assets/projects/tic.jpg";
+import TTT2 from "../../app/assets/projects/ttt2.jpg";
 import Game2 from "../../app/assets/projects/game2.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
@@ -38,14 +39,15 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/cv/blob/main/pages/todo.tsx"
         },
         {
-            name: "Tic-Tac-Toe",
-            image: TivTacToe,
+            name: "Tic-Tac-Toe (",
+            image: TTT2,
             description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage",
-            id: 17072022,
-            technologies: "react,typescript,context, tailwind, jest, rtl, ls",
-            linkDemo: "https://tttreact.vercel.app/",
-            linkCode: "https://github.com/sklevzhic/tttreact"
+            id: 28082022,
+            technologies: "html,typescript,css, jest, rtl, ls",
+            linkDemo: "https://github.com/sklevzhic/Tic-Tac-Toe",
+            linkCode: "https://github.com/sklevzhic/Tic-Tac-Toe"
         },
+
         {
             name: "Game 2",
             image: Game2,
@@ -177,6 +179,16 @@ const initialState: PortfolioState = {
         },
 
         {
+            name: "Tic-Tac-Toe (реакт, старая версия)",
+            image: TivTacToe,
+            description: "Игра крестики-нолики. Регулировка размеров сетки. Проверка победной серии во все стороны. Сохранение в LocalStorage (Старая версия)",
+            id: 17072022,
+            technologies: "react,typescript,context, tailwind, jest, rtl, ls",
+            linkDemo: "https://tttreact.vercel.app/",
+            linkCode: "https://github.com/sklevzhic/tttreact"
+        },
+
+        {
             name: "Design 1",
             image: ImageDes1,
             description: "Создание дизайна, верстка страницы сайта",
@@ -194,6 +206,7 @@ const initialState: PortfolioState = {
             linkDemo: "",
             linkCode: ""
         },
+
 
     ],
     activeProject: {} as IProject,

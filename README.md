@@ -1,1 +1,1 @@
-Demo - [https://cv-weld.vercel.app](https://cv-weld.vercel.app)
+Demo - [https://cv-sklevzhic.vercel.app/](https://cv-sklevzhic.vercel.app/)

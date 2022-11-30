@@ -11,10 +11,13 @@ import ImageTodoNext from "../../app/assets/projects/todo.jpg";
 import ImageWeather from "../../app/assets/projects/weather.jpg";
 import ImageDes1 from "../../app/assets/projects/figma1.jpg";
 import TivTacToe from "../../app/assets/projects/tic.jpg";
+import FiftynGameIMG from "../../app/assets/projects/fiftyn.jpg";
 import TTT2 from "../../app/assets/projects/ttt2.jpg";
 import Game2 from "../../app/assets/projects/game2.jpg";
 import ImageDes2 from "../../app/assets/projects/figma2.png";
 import ImageTodo from "../../app/assets/projects/todo.png";
+import OnlineZoo from "../../app/assets/projects/online-zoo.jpg";
+import SongBirdImg from "../../app/assets/projects/song-bird.jpg";
 import ImageTodoListApp from "../../app/assets/projects/todolistapp.jpg";
 import ImageAnimation from "../../app/assets/projects/animation.png";
 import ImageChat from "../../app/assets/projects/chat.jpg";
@@ -196,6 +199,35 @@ const initialState: PortfolioState = {
             linkCode: ""
         },
 
+
+
+        {
+            name: "Online Zoo",
+            image: OnlineZoo,
+            description: "Адаптивная верска по макету (pixel-perfect). 2 слайдера. Интерактивная форма для доната",
+            id: 301120221,
+            technologies: "html, pikselperfect, css, js",
+            linkDemo: "https://rolling-scopes-school.github.io/sklevzhic-JSFE2022Q3/online-zoo/pages/main/index.html",
+            linkCode: ""
+        },
+        {
+            name: "Song Bird",
+            image: SongBirdImg,
+            description: "Игра-викторина для определения голосов птиц. Адаптивная верстка. Кастомный аудиоплеер",
+            id: 301120222,
+            technologies: "html, css, js",
+            linkDemo: "https://rolling-scopes-school.github.io/sklevzhic-JSFE2022Q3/songbird/",
+            linkCode: ""
+        },
+        {
+            name: "Игра в 15",
+            image: FiftynGameIMG,
+            description: "Игра в пятнашки. Drag and Drop перемещение политок. Сохранение в Local Storage. Создание таблицы с результатами",
+            id: 301120223,
+            technologies: "html, ls, css, js",
+            linkDemo: "https://rolling-scopes-school.github.io/sklevzhic-JSFE2022Q3/codejam1/",
+            linkCode: ""
+        },
 
     ],
     activeProject: {} as IProject,

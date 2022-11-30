@@ -90,15 +90,6 @@ const initialState: PortfolioState = {
             linkCode: "https://github.com/sklevzhic/testapptodo"
         },
         {
-            name: "Calendar",
-            image: ImageCalendar,
-            description: "-",
-            id: 2,
-            technologies: "react, redux, typescript",
-            linkDemo: "",
-            linkCode: "https://github.com/sklevzhic/calendar"
-        },
-        {
             name: "Chat",
             image: ImageChat,
             description: "Авторизация. Добавление чатов. Отправление сообщений. Чат создан с помощью react-firebase-hooks",
